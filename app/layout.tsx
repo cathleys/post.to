@@ -4,7 +4,7 @@ import React from "react";
 import GlobalStyle from "@styles/global-style";
 
 export default function RootLayout({
-  children
+  children,
 }: {
   children: React.ReactNode;
 }) {
