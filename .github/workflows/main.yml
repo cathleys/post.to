@@ -10,24 +10,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: "16"
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
     steps:
       - uses: actions/checkout@v3
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+      - uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: "16"
           cache: "npm"
 
-      #installs only packages installed in package.json
+      # ci installs only packages installed in package.json
       - run: npm ci
 
-      #runs lint and prettier
       - run: npm run lint
       - run: npm run prettier
-
       - run: npm run build
