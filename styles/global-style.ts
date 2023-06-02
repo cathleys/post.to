@@ -9,12 +9,13 @@ ${normalize}
     }
 
     a {
+        color: #1d2939;
         text-decoration: none;
         cursor: pointer;
     }
 
     li {
-        list-style-type: none;
+        list-style: none;
     }
   
 `;
