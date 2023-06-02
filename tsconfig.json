@@ -16,7 +16,9 @@
     "baseUrl": ".",
     "incremental": true,
     "paths": {
-      "@styles*": ["styles/*"]
+      "@styles/*": ["styles/*"],
+      "@features/*": ["features/*"],
+      "@config/*": ["config/*"]
     },
     "plugins": [
       {
