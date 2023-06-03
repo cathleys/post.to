@@ -20,10 +20,10 @@ export const LinkItem = styled.li<{ isActive?: boolean }>`
 
 export function NavigationLink({ isActive, text, href }: MenuLinkProps) {
   return (
-    <Link href={href} passHref>
-      <LinkItem isActive={isActive}>
+    <LinkItem isActive={isActive}>
+      <Link href={href} passHref>
         <a>{text}</a>
-      </LinkItem>
-    </Link>
+      </Link>
+    </LinkItem>
   );
 }

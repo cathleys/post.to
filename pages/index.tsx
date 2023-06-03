@@ -1,7 +1,11 @@
-import { PageContainer } from "@features/ui";
+import { PageContainer, HeroSection } from "@features/index";
 
 const Home = () => {
-  return <PageContainer />;
+  return (
+    <PageContainer>
+      <HeroSection />
+    </PageContainer>
+  );
 };
 
 export default Home;

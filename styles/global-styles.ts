@@ -1,6 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 import { normalize } from "styled-normalize";
-const GlobalStyle = createGlobalStyle`
+const GlobalStyles = createGlobalStyle`
 ${normalize}
   html,
     body {
@@ -25,4 +25,4 @@ ${normalize}
   
 `;
 
-export default GlobalStyle;
+export default GlobalStyles;

@@ -1,11 +1,11 @@
 import "@fontsource-variable/inter";
-import GlobalStyle from "@styles/global-style";
+import GlobalStyles from "@styles/global-styles";
 import type { AppProps } from "next/app";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
-      <GlobalStyle />
+      <GlobalStyles />
       <Component {...pageProps} />
     </>
   );
