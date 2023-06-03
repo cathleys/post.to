@@ -9,7 +9,7 @@ ${normalize}
     }
 
     a {
-       
+        color: #1d2939;
         text-decoration: none;
         cursor: pointer;
 
