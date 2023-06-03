@@ -1,5 +1,7 @@
+import { PageContainer } from "@features/ui";
+
 const Home = () => {
-  return <p>Hfhis page is working</p>;
+  return <PageContainer />;
 };
 
 export default Home;
