@@ -1,2 +1,2 @@
-export * from "./navigation-link";
+export * from "./navigation-menu";
 export * from "./page-container";
