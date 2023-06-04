@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import * as P from "./create-post.style";
 
@@ -21,7 +22,15 @@ export function CreatePost() {
         </P.LabelandRemove>
         <P.InputandTextArea>
           <P.Input type="text" placeholder="Title" />
-          <P.TextArea theme="snow" value={value} onChange={setValue} />
+          <ReactQuill
+            theme="snow"
+            style={{
+              height: "20rem",
+              marginBottom: "3rem",
+            }}
+            value={value}
+            onChange={setValue}
+          />
         </P.InputandTextArea>
         <div>
           <button>Publish</button>

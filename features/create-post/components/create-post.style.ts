@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import ReactQuill from "react-quill";
 
 export const Container = styled.div`
   display: flex;
@@ -29,11 +28,6 @@ export const Input = styled.input`
   &:focus {
     outline: none;
   }
-`;
-
-export const TextArea = styled(ReactQuill)`
-  height: 20rem;
-  margin-bottom: 3rem;
 `;
 
 export const Label = styled.label`
