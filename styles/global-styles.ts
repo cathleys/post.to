@@ -2,8 +2,8 @@ import { createGlobalStyle } from "styled-components";
 import { normalize } from "styled-normalize";
 const GlobalStyles = createGlobalStyle`
 ${normalize}
-  html,
     body {
+        box-sizing: border-box;
         font-family: 'Inter Variable', sans-serif;
         color: #1d2939;
     }
