@@ -1,6 +1,14 @@
 import styled from "styled-components";
 import Image from "next/image";
 
+export const ArticleContainer = styled.div`
+  padding: 5rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #f2f4f7;
+`;
 export const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
