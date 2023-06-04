@@ -8,7 +8,7 @@ type MenuLinkProps = {
   text: string;
 };
 
-export const LinkItem = styled.li<{ isActive?: boolean }>`
+export const LinkItem = styled.ul<{ isActive?: boolean }>`
   background: ${(props) =>
     props.isActive ? "-webkit-linear-gradient(#C41740, #EA9C28)" : "none"};
   -webkit-background-clip: ${(props) => (props.isActive ? "text" : "none")};
