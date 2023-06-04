@@ -6,6 +6,10 @@ export const Container = styled.div`
   padding: 7.25rem;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: 64em) {
+    padding: 3rem 1rem;
+  }
 `;
 export const PostWrapper = styled.div`
   display: flex;
@@ -18,7 +22,7 @@ export const InputandTextArea = styled.div`
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
-  gap: 3.125rem;
+  gap: 2rem;
 `;
 export const Input = styled.input`
   border: 1px solid #dadada;
@@ -56,3 +60,5 @@ export const Remove = styled.button`
   background: none;
   color: #c20303;
 `;
+
+export const ButtonWrapper = styled.div``;
