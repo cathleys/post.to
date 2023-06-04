@@ -9,7 +9,7 @@ export const Container = styled.div`
   text-align: center;
 
   @media (max-width: 64em) {
-    padding: 3.75rem 2.5rem 0.938rem;
+    padding: 3.75rem 2.5rem;
   }
 `;
 

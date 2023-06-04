@@ -13,8 +13,7 @@ export function HeroSection() {
       />
       <H.HeroTitle>Welcome to Cath.to</H.HeroTitle>
       <H.HeroSubtitle>
-        Publish you articles with ease. Made for software developers, by
-        software developer.
+        Publish you articles with ease. Share your thoughts. Learn from others.
       </H.HeroSubtitle>
     </H.Container>
   );
