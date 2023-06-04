@@ -1,6 +1,7 @@
 import Head from "next/head";
 import React from "react";
 import { NavigationMenu } from "@features/index";
+import { Footer } from "../footer";
 
 type PageContainerProps = {
   children: React.ReactNode;
@@ -17,6 +18,7 @@ export function PageContainer({ children }: PageContainerProps) {
       <NavigationMenu />
 
       <main>{children}</main>
+      <Footer />
     </>
   );
 }
