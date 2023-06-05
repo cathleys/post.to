@@ -1,58 +1,24 @@
 import React, { useState } from "react";
 import dynamic from "next/dynamic";
 import "react-quill/dist/quill.snow.css";
+import { formats, modules } from "../api/quill-data";
 import * as P from "./create-post.style";
+import { ButtonUi } from "@features/index";
+import { ButtonColor } from "@features/ui/button/button";
 
 const QuillNoSSRWrapper = dynamic(import("react-quill"), {
   ssr: false,
   loading: () => <div>Loading...</div>,
 });
 
-const modules = {
-  toolbar: [
-    [{ header: "1" }, { header: "2" }, { font: [] }],
-    [{ size: [] }],
-    ["bold", "italic", "underline", "strike", "blockquote"],
-    [
-      { list: "ordered" },
-      { list: "bullet" },
-      { indent: "-1" },
-      { indent: "+1" },
-    ],
-    ["link", "image", "video"],
-    ["clean"],
-  ],
-  clipboard: {
-    // toggle to add extra line breaks when pasting HTML:
-    matchVisual: false,
-  },
-};
-/*
- * Quill editor formats
- * See https://quilljs.com/docs/formats/
- */
-const formats = [
-  "header",
-  "font",
-  "size",
-  "bold",
-  "italic",
-  "underline",
-  "strike",
-  "blockquote",
-  "list",
-  "bullet",
-  "indent",
-  "link",
-  "image",
-  "video",
-];
 export function CreatePost() {
   const [value, setValue] = useState("");
 
   return (
     <P.Container>
-      <P.PostWrapper>
+      <P.ImagePost src="/icons/post-1.png" alt="image post" />
+
+      <P.PostWrapper id="postform" autoComplete="off">
         <P.LabelandRemove>
           <P.Label htmlFor="cover image">
             Upload Cover
@@ -78,9 +44,10 @@ export function CreatePost() {
             }}
           />
         </P.InputandTextArea>
+        <br />
         <P.ButtonWrapper>
-          <button>Publish</button>
-          <button>Save as draft</button>
+          <ButtonUi text="Publish" href="/" color={ButtonColor.dark} />
+          <ButtonUi text="Save as draft" href="/" color={ButtonColor.white} />
         </P.ButtonWrapper>
       </P.PostWrapper>
     </P.Container>

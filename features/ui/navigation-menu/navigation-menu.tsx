@@ -5,10 +5,11 @@ import Link from "next/link";
 import { Menu, MenuItem } from "@mui/material";
 import { NavigationLink } from "./navigation-link";
 import * as N from "./navigation.style";
+import { ButtonUi } from "@features/index";
+import { ButtonColor } from "../button/button";
 
 const menuLinks = [
-  { text: "Home", href: Routes.home },
-  { text: "Sign Up", href: Routes.signup },
+  { text: "Sign up", href: Routes.signup },
   { text: "Login", href: Routes.login },
 ];
 
@@ -52,8 +53,7 @@ export function NavigationMenu() {
           style={{
             flexDirection: "column",
             fontFamily: "Inter",
-            padding: "0.5rem",
-            justifyContent: "start",
+            margin: "0.5rem 0",
           }}
         >
           {menuLinks.map((menuLink, index) => (
@@ -66,15 +66,15 @@ export function NavigationMenu() {
           ))}
         </MenuItem>
       </Menu>
+      {/* Desktop View */}
       <N.MenuLinks>
-        {menuLinks.map((menuLink, index) => (
-          <NavigationLink
-            key={index}
-            isActive={router.pathname === menuLink.href}
-            href={menuLink.href}
-            text={menuLink.text}
-          />
-        ))}
+        <ButtonUi
+          text="Sign up"
+          href={Routes.signup}
+          color={ButtonColor.white}
+        />
+
+        <ButtonUi text="Login" href={Routes.login} color={ButtonColor.dark} />
       </N.MenuLinks>
     </N.NavBar>
   );

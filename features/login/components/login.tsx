@@ -1,12 +1,13 @@
 import React from "react";
 import * as L from "./login.style";
+import { Routes } from "@config/routes";
 
 export function Login() {
   return (
     <L.Container>
       <L.LoginWrapper>
         <h2>Login</h2>
-        <L.LoginForm>
+        <L.LoginForm id="loginform" autoComplete="off">
           <L.Label>
             Email
             <L.Input type="email" name="email" />
@@ -15,8 +16,9 @@ export function Login() {
             Password
             <L.Input type="password" name="password" />
           </L.Label>
+
           <span>-OR-</span>
-          <L.Anchor>Create an Account</L.Anchor>
+          <L.Anchor href={Routes.signup}>Create an Account</L.Anchor>
           <span>
             Get Access Directly: <L.Anchor>Demo User</L.Anchor>
           </span>

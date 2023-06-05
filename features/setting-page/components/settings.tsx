@@ -1,10 +1,13 @@
+import { ButtonColor } from "@features/ui/button/button";
 import * as S from "./settings.style";
+import { ButtonUi } from "features/index";
 
 export function Settings() {
   return (
     <S.Container>
       <S.SettingsWrapper>
         <h2>Update Your Account</h2>
+        <br />
 
         <S.UpdateForm>
           <S.ImageStyle>
@@ -24,7 +27,11 @@ export function Settings() {
           <S.Input type="email" name="email" />
           <S.Label>Password</S.Label>
           <S.Input type="password" name="password" />
-          <button>Save</button>
+          <br />
+          <div>
+            <ButtonUi text="Save" href="" color={ButtonColor.dark} />
+          </div>
+          <br />
           <S.DeleteAccount>Delete Account</S.DeleteAccount>
         </S.UpdateForm>
       </S.SettingsWrapper>
