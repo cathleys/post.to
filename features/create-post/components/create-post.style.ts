@@ -11,7 +11,16 @@ export const Container = styled.div`
     padding: 3rem 1rem;
   }
 `;
-export const PostWrapper = styled.div`
+
+export const ImagePost = styled.img`
+  border-radius: 0.5rem;
+  object-fit: cover;
+  height: 250px;
+  width: 100vw;
+  margin-bottom: 1rem;
+`;
+
+export const PostWrapper = styled.form`
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
@@ -61,4 +70,6 @@ export const Remove = styled.button`
   color: #c20303;
 `;
 
-export const ButtonWrapper = styled.div``;
+export const ButtonWrapper = styled.div`
+  display: flex;
+`;
