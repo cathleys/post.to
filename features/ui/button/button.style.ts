@@ -3,6 +3,7 @@ import { ButtonColor } from "./button";
 
 export const ButtonStyle = styled.button<{ color: ButtonColor }>`
   padding: 0.75rem 0.875rem;
+  margin-right: 0.5rem;
   border-radius: 0.5rem;
   font-size: 0.875rem;
   font-weight: 600;
