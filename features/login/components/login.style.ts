@@ -34,7 +34,17 @@ export const Input = styled.input`
 `;
 
 export const Anchor = styled.a`
+  text-decoration: underline;
+
   &:hover {
     color: blue;
   }
+`;
+
+export const NewAccount = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
 `;
