@@ -1,7 +1,6 @@
 import React from "react";
 import type { NextPage } from "next";
-import { PageContainer } from "@features/ui";
-import { Login } from "@features/index";
+import { Login, PageContainer } from "@features/index";
 
 const LoginPage: NextPage = () => {
   return (
