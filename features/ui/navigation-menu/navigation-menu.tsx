@@ -12,11 +12,19 @@ const menuLinks = [
   { text: "Sign up", href: Routes.signup },
   { text: "Login", href: Routes.login },
 ];
+const menuLoggedinLinks = [
+  { text: "Home", href: Routes.home },
+  { text: "Create post", href: Routes.createPost },
+  { text: "Settings", href: Routes.settings },
+  { text: "Logout", href: Routes.home },
+];
 
 export function NavigationMenu() {
   const router = useRouter();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
+
+  const user = true;
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
@@ -67,15 +75,29 @@ export function NavigationMenu() {
         </MenuItem>
       </Menu>
       {/* Desktop View */}
-      <N.MenuLinks>
-        <ButtonUi
-          text="Sign up"
-          href={Routes.signup}
-          color={ButtonColor.white}
-        />
 
-        <ButtonUi text="Login" href={Routes.login} color={ButtonColor.dark} />
-      </N.MenuLinks>
+      {user ? (
+        <N.MenuLinks>
+          <ButtonUi
+            text="Sign up"
+            href={Routes.signup}
+            color={ButtonColor.white}
+          />
+
+          <ButtonUi text="Login" href={Routes.login} color={ButtonColor.dark} />
+        </N.MenuLinks>
+      ) : (
+        <N.MenuLinks>
+          {menuLoggedinLinks.map((menuLink, index) => (
+            <NavigationLink
+              key={index}
+              isActive={router.pathname === menuLink.href}
+              href={menuLink.href}
+              text={menuLink.text}
+            />
+          ))}
+        </N.MenuLinks>
+      )}
     </N.NavBar>
   );
 }

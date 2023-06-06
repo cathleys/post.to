@@ -2,11 +2,20 @@ import styled from "styled-components";
 import Image from "next/image";
 
 export const ArticleContainer = styled.div`
+  padding: 5rem 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background: #f2f4f7;
+  gap: 1rem;
+`;
+export const HeaderandButton = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 65vw;
+  justify-content: space-between;
+  margin-bottom: 0.625rem;
 `;
 export const Container = styled.div`
   display: flex;
@@ -16,6 +25,7 @@ export const Container = styled.div`
   border: 1px solid white;
   border-radius: 1.25rem;
   padding: 1.5rem 1.25rem 1.5rem 1.875rem;
+  box-shadow: 0px 21px 43px -26px rgba(150, 145, 150, 1);
 
   &:hover {
     border: 1px solid #667085;

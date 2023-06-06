@@ -50,9 +50,11 @@ export function SinglePost() {
       </S.Container>
       <S.RecommendedContainer>
         <S.Span>Recommended articles</S.Span>
-        <ArticleList />
-        <ArticleList />
-        <ArticleList />
+        <S.ArticleContainer>
+          <ArticleList />
+          <ArticleList />
+          <ArticleList />
+        </S.ArticleContainer>
       </S.RecommendedContainer>
     </>
   );

@@ -56,7 +56,7 @@ export const Article = styled.div`
 export const RecommendedContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 2rem;
   padding: 5rem 6.25rem;
   background: #f2f4f7;
 
@@ -72,4 +72,13 @@ export const Span = styled.div`
   @media (max-width: 64em) {
     padding-left: 0;
   }
+`;
+
+export const ArticleContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #f2f4f7;
+  gap: 1rem;
 `;
