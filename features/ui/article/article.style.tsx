@@ -2,7 +2,6 @@ import styled from "styled-components";
 import Image from "next/image";
 
 export const ArticleContainer = styled.div`
-  padding: 5rem 0;
   display: flex;
   flex-direction: column;
   justify-content: center;

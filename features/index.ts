@@ -6,3 +6,4 @@ export * from "./hero";
 export * from "./login";
 export * from "./sign-up";
 export * from "./setting-page";
+export * from "./single-post";
