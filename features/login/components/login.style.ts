@@ -12,7 +12,7 @@ export const LoginWrapper = styled.div`
 export const LoginForm = styled.form`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+
   align-items: center;
   gap: 1.5rem;
 `;
@@ -41,10 +41,15 @@ export const Anchor = styled.a`
   }
 `;
 
-export const NewAccount = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
+export const LoginButton = styled.button`
+  background: #007aff;
+  padding: 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  color: white;
+  width: 100%;
+
+  &:hover {
+    background: #0063e4;
+  }
 `;

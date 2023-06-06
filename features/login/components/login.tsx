@@ -16,7 +16,7 @@ export function Login() {
             Password
             <L.Input type="password" name="password" />
           </L.Label>
-
+          <L.LoginButton>Login</L.LoginButton>
           <span>-OR-</span>
           <L.Anchor href={Routes.signup}>Create an Account</L.Anchor>
           <span>
