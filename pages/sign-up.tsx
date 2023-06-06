@@ -1,8 +1,12 @@
 import React from "react";
 import type { NextPage } from "next";
-import { PageContainer } from "@features/index";
+import { PageContainer, SignUp } from "@features/index";
 
-const Signup: NextPage = () => {
-  return <PageContainer>Sin</PageContainer>;
+const SignUpPage: NextPage = () => {
+  return (
+    <PageContainer>
+      <SignUp />
+    </PageContainer>
+  );
 };
-export default Signup;
+export default SignUpPage;
