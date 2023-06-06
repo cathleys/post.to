@@ -4,4 +4,5 @@ export * from "./ui/button";
 export * from "./create-post";
 export * from "./hero";
 export * from "./login";
+export * from "./sign-up";
 export * from "./setting-page";

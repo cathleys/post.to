@@ -1,8 +1,16 @@
-import React from "react";
-import * as L from "./login.style";
-import { Routes } from "@config/routes";
+import type { Meta, StoryObj } from "@storybook/react";
+import { Login } from "@features/login";
+import * as L from "@features/login/components/login.style";
 
-export function Login() {
+const meta: Meta<typeof Login> = {
+  title: "UI/Login",
+  component: Login,
+};
+
+export default meta;
+type Story = StoryObj<typeof Login>;
+
+const LoginForm = () => {
   return (
     <L.Container>
       <L.LoginWrapper>
@@ -18,7 +26,7 @@ export function Login() {
           </L.Label>
           <L.LoginButton>Login</L.LoginButton>
           <span>-OR-</span>
-          <L.Anchor href={Routes.signup}>Create an Account</L.Anchor>
+          <L.Anchor href="/sign-up">Create an Account</L.Anchor>
           <span>
             Get Access Directly: <L.Anchor>Demo User</L.Anchor>
           </span>
@@ -26,4 +34,8 @@ export function Login() {
       </L.LoginWrapper>
     </L.Container>
   );
-}
+};
+
+export const LoginPage: Story = {
+  render: () => <LoginForm />,
+};

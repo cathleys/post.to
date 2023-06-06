@@ -3,16 +3,15 @@ import styled from "styled-components";
 export const Container = styled.div`
   padding: 7.25rem 0;
 `;
-export const LoginWrapper = styled.div`
+export const SignUpWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
-export const LoginForm = styled.form`
+export const SignUpForm = styled.form`
   display: flex;
   flex-direction: column;
-
   align-items: center;
   gap: 1.5rem;
 `;
@@ -41,7 +40,7 @@ export const Anchor = styled.a`
   }
 `;
 
-export const LoginButton = styled.button`
+export const SignUpButton = styled.button`
   background: #007aff;
   padding: 1rem;
   border: none;

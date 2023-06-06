@@ -4,5 +4,5 @@ export function Footer() {
   const getYear = () => {
     return new Date().getFullYear();
   };
-  return <FooterContainer>Copyright © {getYear()} Cath Leyson</FooterContainer>;
+  return <FooterContainer>Copyright © {getYear()} Cath.to</FooterContainer>;
 }
