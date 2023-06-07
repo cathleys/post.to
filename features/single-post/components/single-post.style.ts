@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  padding: 0 11.875rem;
+  padding: 0 11.875rem 2rem 11.875rem;
 
   @media (max-width: 64em) {
     padding: 3.75rem 2.5rem;
@@ -37,6 +37,12 @@ export const Publisher = styled.div`
   display: inline-flex;
   gap: 0 1rem;
 `;
+
+export const Icon = styled.img`
+  border-radius: 50%;
+  height: 3.125rem;
+  width: 3.125rem;
+`;
 export const AuthorandDate = styled.div`
   display: flex;
   flex-direction: column;
@@ -47,6 +53,13 @@ export const AuthorandDate = styled.div`
 `;
 export const Author = styled.div`
   font-weight: bold;
+`;
+
+export const Edit = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.5rem;
 `;
 export const Article = styled.div`
   text-align: justify;
