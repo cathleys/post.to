@@ -1,15 +1,18 @@
 import styled from "styled-components";
+import { RxAvatar } from "react-icons/rx";
 
 export const Container = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 7.25rem 0;
+  padding: 7.25rem 6.5rem;
+
+  @media (max-width: 64em) {
+    flex-direction: column;
+    gap: 3rem;
+    padding: 3rem 1.5rem;
+  }
 `;
 export const SettingsWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex: 6;
 `;
 export const UpdateForm = styled.form`
   display: flex;
@@ -54,11 +57,9 @@ export const Input = styled.input`
     outline: 1px solid #777;
   }
 `;
-export const ImageIcon = styled.img`
-  border-radius: 50%;
-  background: #777;
-  width: 50px;
-  height: 50px;
+export const ImageIcon = styled(RxAvatar)`
+  height: 3.125rem;
+  width: 3.125rem;
 `;
 export const DeleteAccount = styled.span`
   color: #c20303;
