@@ -2,14 +2,16 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 7.25rem 0;
+  padding: 7.25rem 1.5rem;
+
+  @media (max-width: 64em) {
+    flex-direction: column;
+    gap: 3rem;
+    padding: 3rem 1.5rem;
+  }
 `;
 export const SettingsWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex: 9;
 `;
 export const UpdateForm = styled.form`
   display: flex;
@@ -63,4 +65,7 @@ export const ImageIcon = styled.img`
 export const DeleteAccount = styled.span`
   color: #c20303;
   cursor: pointer;
+`;
+export const SideBarUserInfo = styled.div`
+  flex: 3;
 `;
