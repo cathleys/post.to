@@ -1,8 +1,9 @@
 import styled from "styled-components";
+import { RxAvatar } from "react-icons/rx";
 
 export const Container = styled.div`
   display: flex;
-  padding: 7.25rem 1.5rem;
+  padding: 7.25rem 6.5rem;
 
   @media (max-width: 64em) {
     flex-direction: column;
@@ -11,7 +12,7 @@ export const Container = styled.div`
   }
 `;
 export const SettingsWrapper = styled.div`
-  flex: 9;
+  flex: 6;
 `;
 export const UpdateForm = styled.form`
   display: flex;
@@ -56,16 +57,11 @@ export const Input = styled.input`
     outline: 1px solid #777;
   }
 `;
-export const ImageIcon = styled.img`
-  border-radius: 50%;
-  background: #777;
-  width: 50px;
-  height: 50px;
+export const ImageIcon = styled(RxAvatar)`
+  height: 3.125rem;
+  width: 3.125rem;
 `;
 export const DeleteAccount = styled.span`
   color: #c20303;
   cursor: pointer;
-`;
-export const SideBarUserInfo = styled.div`
-  flex: 3;
 `;
