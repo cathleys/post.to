@@ -35,6 +35,7 @@ export function Settings() {
           <S.DeleteAccount>Delete Account</S.DeleteAccount>
         </S.UpdateForm>
       </S.SettingsWrapper>
+      <S.SideBarUserInfo>sidbar</S.SideBarUserInfo>
     </S.Container>
   );
 }
