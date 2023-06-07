@@ -2,7 +2,8 @@ import React from "react";
 import * as S from "./single-post.style";
 import Image from "next/image";
 import { ArticleList } from "@features/ui";
-
+import { AiFillEdit } from "react-icons/ai";
+import { BsFillTrashFill } from "react-icons/bs";
 export function SinglePost() {
   return (
     <>
@@ -12,13 +13,20 @@ export function SinglePost() {
         </S.HeaderWrapper>
 
         <S.Publisher>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/icons/icon.svg" alt="author" />
+          <S.Icon src="/icons/icon.svg" alt="author" />
 
           <S.AuthorandDate>
             <S.Author>Selena Gomez</S.Author>
             <div>May 03 2021</div>
           </S.AuthorandDate>
+          <S.Edit>
+            <span>
+              <AiFillEdit />
+            </span>
+            <span>
+              <BsFillTrashFill />
+            </span>
+          </S.Edit>
         </S.Publisher>
 
         <Image
