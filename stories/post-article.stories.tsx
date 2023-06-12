@@ -1,15 +1,16 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { ArticleCard } from "@features/ui/article/article-card";
+import Image from "next/image";
 import articleImage from "../public/icons/article-thumbnail.svg";
-import * as A from "@features/ui/article/article.style";
+import { PostArticle } from "@features/ui";
+import * as A from "@features/ui/posts/post-article.style";
 
-const meta: Meta<typeof ArticleCard> = {
+const meta: Meta<typeof PostArticle> = {
   title: "UI/Article",
-  component: ArticleCard,
+  component: PostArticle,
 };
 
 export default meta;
-type Story = StoryObj<typeof ArticleCard>;
+type Story = StoryObj<typeof PostArticle>;
 
 const Article = () => {
   return (
@@ -25,7 +26,7 @@ const Article = () => {
         </A.Sentence>
       </A.Wrapper>
 
-      <A.ImagePost src={articleImage} alt="image" width={210} height={170} />
+      <Image src={articleImage} alt="image" width={210} height={170} />
     </A.Container>
   );
 };
