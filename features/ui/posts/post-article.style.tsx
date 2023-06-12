@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Image from "next/image";
 
 export const ArticleContainer = styled.div`
   padding: 5rem 0;
@@ -74,7 +73,4 @@ export const TitleandSentence = styled.div`
   flex-direction: column;
   gap: 0.625rem;
   max-width: 38.125rem;
-`;
-export const ImagePost = styled(Image)`
-  border-radius: 0.625rem;
 `;

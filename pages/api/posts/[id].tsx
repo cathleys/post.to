@@ -1,5 +1,5 @@
 import connectDB from "@utils/connect-db";
-const Post = require("@models/post");
+import Post from "@models/post";
 
 connectDB();
 

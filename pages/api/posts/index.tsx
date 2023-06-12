@@ -9,17 +9,17 @@ async function Posts(req: any, res: any) {
   switch (method) {
     case "GET":
       try {
-        const posts = Post.find({});
+        const posts = await Post.find({});
 
         res.status(200).json({ success: true, data: posts });
       } catch (error) {
-        res.status(400).json({ success: false });
+        res.status(400).json({ success: false, message: "ERRROR" });
       }
       break;
 
     case "POST":
       try {
-        const post = Post.create(req.body);
+        const post = await Post.create(req.body);
 
         res.status(200).json({ success: true, data: post });
       } catch (error) {

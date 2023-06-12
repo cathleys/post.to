@@ -1,27 +1,27 @@
-import { PageContainer, HeroSection } from "@features/index";
-import { ArticleList, ButtonUi } from "@features/ui";
-import {
-  ArticleContainer,
-  HeaderandButton,
-} from "@features/ui/article/article.style";
-import { ButtonColor } from "@features/ui/button/button";
+import * as I from "@features/index";
 
-const Home = () => {
+const Home = ({ posts }: any) => {
   return (
-    <PageContainer>
-      <HeroSection />
-      <ArticleContainer>
-        <HeaderandButton>
+    <I.PageContainer>
+      <I.HeroSection />
+      <I.ArticleContainer>
+        <I.HeaderandButton>
           <h3>Read articles</h3>
-          <ButtonUi text="View all" href={""} color={ButtonColor.white} />
-        </HeaderandButton>
-        <ArticleList />
-        <ArticleList />
-        <ArticleList />
-        <ArticleList />
-      </ArticleContainer>
-    </PageContainer>
+          <I.ButtonUi text="View all" href={""} color={I.ButtonColor.white} />
+        </I.HeaderandButton>
+
+        {posts?.map((article: any) => (
+          <I.PostArticle key={article._id} {...article} />
+        ))}
+      </I.ArticleContainer>
+    </I.PageContainer>
   );
+};
+
+Home.getInitialProps = async () => {
+  const res = await fetch("http://localhost:3000/api/posts");
+  const { data } = await res.json();
+  return { posts: data };
 };
 
 export default Home;
