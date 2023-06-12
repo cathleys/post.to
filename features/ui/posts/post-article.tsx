@@ -28,7 +28,7 @@ export function PostArticle({ _id, title, photo, desc }: ArticleProps) {
       </Link>
       <Image
         src={photo}
-        alt="post image"
+        alt={title}
         width={210}
         height={170}
         style={{ borderRadius: "0.5rem" }}

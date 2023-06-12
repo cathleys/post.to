@@ -40,7 +40,7 @@ export const Wrapper = styled.div`
   flex-direction: column;
   align-items: flex-start;
   padding-right: 1.25rem;
-
+  cursor: pointer;
   @media (max-width: 64em) {
     padding: 0;
   }
