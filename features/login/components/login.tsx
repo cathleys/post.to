@@ -7,6 +7,7 @@ import * as L from "./login.style";
 export function Login() {
   const { status } = useSession();
 
+  console.log(status);
   useEffect(() => {
     if (status === "authenticated") Router.replace(Routes.home);
   }, [status]);
@@ -39,14 +40,16 @@ export function Login() {
             <L.Input type="password" name="password" required />
           </L.Label>
 
-          <L.LoginButton type="submit">Login</L.LoginButton>
+          <L.ButtonWrapper>
+            <L.LoginButton type="submit">Login</L.LoginButton>
 
-          <L.LoginButton
-            onClick={() => signIn("github")}
-            style={{ background: "#36a736" }}
-          >
-            Login with Github
-          </L.LoginButton>
+            <L.LoginButton onClick={() => signIn("github")}>
+              Login with Github
+            </L.LoginButton>
+            <L.LoginButton onClick={() => signIn("google")}>
+              Login with Google
+            </L.LoginButton>
+          </L.ButtonWrapper>
 
           <span>-OR-</span>
           <L.Anchor href={Routes.signup}>Create an Account</L.Anchor>
