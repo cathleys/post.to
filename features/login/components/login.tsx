@@ -7,7 +7,6 @@ import * as L from "./login.style";
 export function Login() {
   const { status } = useSession();
 
-  console.log("login", status);
   useEffect(() => {
     if (status === "authenticated") Router.replace(Routes.home);
   }, [status]);

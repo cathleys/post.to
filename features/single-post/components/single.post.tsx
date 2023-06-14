@@ -35,7 +35,14 @@ export function SinglePost({ title, photo, content, author }: SinglePostProps) {
           </S.Edit>
         </S.Publisher>
 
-        <Image src={photo} alt={author} width={1000} height={580} />
+        <Image
+          src={photo}
+          alt={author}
+          width={1000}
+          height={580}
+          priority={false}
+          quality={90}
+        />
         <S.Article>{content}</S.Article>
       </S.Container>
       <S.RecommendedContainer>

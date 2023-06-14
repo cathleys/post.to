@@ -8,6 +8,7 @@ type ArticleProps = {
   title: string;
   photo: string;
   desc: string;
+  CreatedAt: Date;
 };
 export function PostArticle({ _id, title, photo, desc }: ArticleProps) {
   return (
@@ -19,7 +20,7 @@ export function PostArticle({ _id, title, photo, desc }: ArticleProps) {
         }}
       >
         <A.Wrapper>
-          <A.Date>Date</A.Date>
+          <A.Date>May 23</A.Date>
           <A.TitleandSentence>
             <A.Title>{title}</A.Title>
             <A.Sentence>{desc}</A.Sentence>
@@ -29,10 +30,10 @@ export function PostArticle({ _id, title, photo, desc }: ArticleProps) {
       <Image
         src={photo}
         alt={title}
+        priority={false}
         width={210}
         height={170}
         style={{ borderRadius: "0.5rem" }}
-        priority={false}
       />
     </A.Container>
   );
