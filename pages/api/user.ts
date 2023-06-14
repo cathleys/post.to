@@ -1,5 +1,5 @@
 import connectDB from "@utils/connect-db";
-const User = require("@models/user");
+import User from "@models/user";
 
 connectDB();
 
