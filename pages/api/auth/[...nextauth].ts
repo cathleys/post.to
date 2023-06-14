@@ -59,9 +59,7 @@ const authOptions: NextAuthOptions = {
   ],
   pages: {
     error: Routes.login,
-    signOut: Routes.home,
   },
-  secret: process.env.JWT_SECRET,
 };
 
 export default NextAuth(authOptions);
