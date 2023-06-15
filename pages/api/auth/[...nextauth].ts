@@ -9,7 +9,7 @@ import { Routes } from "@config/routes";
 
 const authOptions: NextAuthOptions = {
   providers: [
-    process.env.VERCEL_ENV === "preview"
+    process.env.BRANCH_URL
       ? CredentialsProvider({
           id: "credentials",
           name: "Credentials",
