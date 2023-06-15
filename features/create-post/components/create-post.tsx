@@ -62,5 +62,5 @@ export function CreatePost() {
         </P.PostWrapper>
       </P.Container>
     );
-  return <div>Login again to see this page</div>;
+  return <h2>Login to see this page again.</h2>;
 }
