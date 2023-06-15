@@ -64,5 +64,5 @@ export function Settings() {
       </S.Container>
     );
 
-  return <h2>Login to see this page again </h2>;
+  return <h2>Login to see this page again. </h2>;
 }
