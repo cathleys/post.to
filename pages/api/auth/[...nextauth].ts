@@ -9,49 +9,48 @@ import { Routes } from "@config/routes";
 
 const authOptions: NextAuthOptions = {
   providers: [
-    process.env.BRANCH_URL
-      ? CredentialsProvider({
-          id: "credentials",
-          name: "Credentials",
+    CredentialsProvider({
+      id: "credentials",
+      name: "Credentials",
 
-          credentials: {
-            email: { type: "email", name: "email" },
-            password: { type: "password", name: "password" },
-          },
+      credentials: {
+        email: { type: "email", name: "email" },
+        password: { type: "password", name: "password" },
+      },
 
-          async authorize(credentials) {
-            //Check if the user exists.
-            await connectDB();
+      async authorize(credentials) {
+        //Check if the user exists.
+        await connectDB();
 
-            try {
-              const user = await User.findOne({
-                email: credentials?.email,
-              });
+        try {
+          const user = await User.findOne({
+            email: credentials?.email,
+          });
 
-              if (user && credentials) {
-                const isPasswordCorrect = await bcrypt.compare(
-                  credentials.password,
-                  user.password
-                );
+          if (user && credentials) {
+            const isPasswordCorrect = await bcrypt.compare(
+              credentials.password,
+              user.password
+            );
 
-                if (isPasswordCorrect) {
-                  return user;
-                } else {
-                  throw new Error("wrong credentials");
-                }
-              } else {
-                throw new Error("User not found!");
-              }
-            } catch (err) {
-              console.error(err);
-              throw new Error("Check your credentials");
+            if (isPasswordCorrect) {
+              return user;
+            } else {
+              throw new Error("wrong credentials");
             }
-          },
-        })
-      : GithubProvider({
-          clientId: process.env.GITHUB_ID || "",
-          clientSecret: process.env.GITHUB_SECRET || "",
-        }),
+          } else {
+            throw new Error("User not found!");
+          }
+        } catch (err) {
+          console.error(err);
+          throw new Error("Check your credentials");
+        }
+      },
+    }),
+    GithubProvider({
+      clientId: process.env.GITHUB_ID || "",
+      clientSecret: process.env.GITHUB_SECRET || "",
+    }),
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID || "",
       clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
