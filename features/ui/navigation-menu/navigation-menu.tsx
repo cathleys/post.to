@@ -60,7 +60,12 @@ export function NavigationMenu() {
             margin: "0.5rem 0",
           }}
         >
-          {status === "authenticated" ? (
+          {status === "unauthenticated" ? (
+            <>
+              <NavigationLink href="/login" text="Login" />
+              <NavigationLink href="/sign-up" text="Sign Up" />{" "}
+            </>
+          ) : (
             <>
               {menuLoggedinLinks.map((menuLink, index) => (
                 <NavigationLink
@@ -75,11 +80,6 @@ export function NavigationMenu() {
                 text="Log out"
                 onClick={() => signOut()}
               />
-            </>
-          ) : (
-            <>
-              <NavigationLink href="/login" text="Login" />
-              <NavigationLink href="/sign-up" text="Sign Up" />
             </>
           )}
         </MenuItem>
