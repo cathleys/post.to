@@ -26,7 +26,7 @@ const authOptions: NextAuthOptions = {
           const user = await User.findOne({
             email: credentials?.email,
           });
-
+          console.log("user credential", user);
           if (user && credentials) {
             const isPasswordCorrect = await bcrypt.compare(
               credentials.password,
@@ -56,6 +56,14 @@ const authOptions: NextAuthOptions = {
       clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
     }),
   ],
+  secret: process.env.NEXTAUTH_SECRET,
+
+  callbacks: {
+    async jwt({ token }) {
+      token.userRole = "user";
+      return token;
+    },
+  },
   pages: {
     error: Routes.login,
   },
