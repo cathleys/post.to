@@ -1,4 +1,3 @@
-import fetch from "isomorphic-fetch";
 import * as I from "@features/index";
 
 const Home = ({ posts }: any) => {
@@ -19,10 +18,14 @@ const Home = ({ posts }: any) => {
   );
 };
 
-Home.getInitialProps = async () => {
-  const res = await fetch("https://cathto.vercel.app/api/posts");
-  const { data } = await res.json();
-  return { posts: data };
+export const getStaticProps = async () => {
+  try {
+    const res = await fetch("/api/posts");
+    const data = await res.json();
+    return { props: { posts: JSON.parse(JSON.stringify(data)) } };
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export default Home;
