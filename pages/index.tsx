@@ -19,13 +19,9 @@ const Home = ({ posts }: any) => {
 };
 
 export const getStaticProps = async () => {
-  try {
-    const res = await fetch("/api/posts");
-    const data = await res.json();
-    return { props: { posts: JSON.parse(JSON.stringify(data)) } };
-  } catch (error) {
-    console.error(error);
-  }
+  const res = await fetch("/api/posts");
+  const data = await res.json();
+  return { props: { posts: JSON.parse(JSON.stringify(data)) } };
 };
 
 export default Home;

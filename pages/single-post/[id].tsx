@@ -12,13 +12,9 @@ const SinglePostPage: NextPage = ({ post }: any) => {
 };
 
 export const getStaticProps = async ({ query: { id } }: any) => {
-  try {
-    const res = await fetch(`/api/posts/${id}`);
-    const data = await res.json();
-    return { props: { post: JSON.parse(JSON.stringify(data)) } };
-  } catch (error) {
-    console.error(error);
-  }
+  const res = await fetch(`/api/posts/${id}`);
+  const data = await res.json();
+  return { props: { post: JSON.parse(JSON.stringify(data)) } };
 };
 
 // SinglePostPage.getInitialProps = async ({ query: { id } }) => {
