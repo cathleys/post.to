@@ -87,7 +87,18 @@ export function NavigationMenu() {
 
       {/* Desktop View */}
 
-      {status === "authenticated" ? (
+      {status === "unauthenticated" ? (
+        <N.MenuLinks>
+          <NavigationLink href={Routes.home} text="Home" />
+          <ButtonUi
+            text="Sign up"
+            href={Routes.signup}
+            color={ButtonColor.white}
+          />
+
+          <ButtonUi text="Login" href={Routes.login} color={ButtonColor.dark} />
+        </N.MenuLinks>
+      ) : (
         <N.MenuLinks>
           {menuLoggedinLinks.map((menuLink, index) => (
             <NavigationLink
@@ -98,17 +109,6 @@ export function NavigationMenu() {
             />
           ))}
           <NavigationLink href="" text="Log out" onClick={() => signOut()} />
-        </N.MenuLinks>
-      ) : (
-        <N.MenuLinks>
-          <NavigationLink href={Routes.home} text="Home" />
-          <ButtonUi
-            text="Sign up"
-            href={Routes.signup}
-            color={ButtonColor.white}
-          />
-
-          <ButtonUi text="Login" href={Routes.login} color={ButtonColor.dark} />
         </N.MenuLinks>
       )}
     </N.NavBar>
