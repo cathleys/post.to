@@ -26,7 +26,7 @@ const authOptions: NextAuthOptions = {
           const user = await User.findOne({
             email: credentials?.email,
           });
-          console.log("user credential", user);
+
           if (user && credentials) {
             const isPasswordCorrect = await bcrypt.compare(
               credentials.password,
