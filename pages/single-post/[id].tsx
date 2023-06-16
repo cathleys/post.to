@@ -12,7 +12,7 @@ const SinglePostPage: NextPage = ({ post }: any) => {
 };
 
 export const getStaticProps = async ({ query: { id } }: any) => {
-  const res = await fetch(`/api/posts/${id}`);
+  const res = await fetch(`https://cathto.vercel.app/api/posts/${id}`);
   const data = await res.json();
   return { props: { post: JSON.parse(JSON.stringify(data)) } };
 };

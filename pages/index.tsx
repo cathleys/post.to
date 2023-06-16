@@ -19,7 +19,7 @@ const Home = ({ posts }: any) => {
 };
 
 export const getStaticProps = async () => {
-  const res = await fetch("/api/posts");
+  const res = await fetch("https://cathto.vercel.app/api/posts");
   const data = await res.json();
   return { props: { posts: JSON.parse(JSON.stringify(data)) } };
 };
