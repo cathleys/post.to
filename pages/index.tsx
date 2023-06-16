@@ -17,11 +17,10 @@ const Home = ({ posts }: any) => {
     </I.PageContainer>
   );
 };
-
-export const getStaticProps = async () => {
+Home.getInitialProps = async () => {
   const res = await fetch("https://cathto.vercel.app/api/posts");
-  const data = await res.json();
-  return { props: { posts: JSON.parse(JSON.stringify(data)) } };
+  const { data } = await res.json();
+  return { posts: data };
 };
 
 export default Home;
