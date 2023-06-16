@@ -10,10 +10,10 @@ const SinglePostPage: NextPage = ({ post }: any) => {
     </PageContainer>
   );
 };
-export const getServerSideProps = async ({ query: { id } }: any) => {
+
+SinglePostPage.getInitialProps = async ({ query: { id } }) => {
   const res = await fetch(`/api/posts/${id}`);
   const { data } = await res.json();
   return { post: data };
 };
-
 export default SinglePostPage;
