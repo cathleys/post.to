@@ -18,8 +18,7 @@ const Home = ({ posts }: any) => {
     </I.PageContainer>
   );
 };
-
-Home.getInitialProps = async () => {
+export const getServerSideProps = async () => {
   const res = await fetch("/api/posts");
   const { data } = await res.json();
   return { posts: data };
