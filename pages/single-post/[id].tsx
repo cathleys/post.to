@@ -1,5 +1,6 @@
 import React from "react";
 import type { NextPage } from "next";
+import fetch from "isomorphic-fetch";
 import { SinglePost, PageContainer } from "@features/index";
 
 const SinglePostPage: NextPage = ({ post }: any) => {
@@ -11,7 +12,7 @@ const SinglePostPage: NextPage = ({ post }: any) => {
 };
 
 SinglePostPage.getInitialProps = async ({ query: { id } }) => {
-  const res = await fetch(`http://localhost:3000/api/posts/${id}`);
+  const res = await fetch(`/api/posts/${id}`);
   const { data } = await res.json();
   return { post: data };
 };

@@ -1,3 +1,4 @@
+import fetch from "isomorphic-fetch";
 import * as I from "@features/index";
 
 const Home = ({ posts }: any) => {
@@ -19,7 +20,7 @@ const Home = ({ posts }: any) => {
 };
 
 Home.getInitialProps = async () => {
-  const res = await fetch("http://localhost:3000/api/posts");
+  const res = await fetch("/api/posts");
   const { data } = await res.json();
   return { posts: data };
 };
