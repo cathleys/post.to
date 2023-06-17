@@ -18,7 +18,8 @@ const Home = ({ posts }: any) => {
   );
 };
 Home.getInitialProps = async () => {
-  const res = await fetch("http://localhost:3000/api/posts");
+  const apiUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+  const res = await fetch(`${apiUrl}/api/posts`);
   const { data } = await res.json();
   return { posts: data };
 };
