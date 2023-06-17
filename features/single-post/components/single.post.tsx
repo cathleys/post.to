@@ -4,7 +4,7 @@ import Image from "next/image";
 import { AiFillEdit } from "react-icons/ai";
 import { BsFillTrashFill } from "react-icons/bs";
 
-type SinglePostProps = {
+export type SinglePostProps = {
   title: string;
   photo: string;
   author: string;
@@ -19,6 +19,7 @@ export function SinglePost({ title, photo, content, author }: SinglePostProps) {
         </S.HeaderWrapper>
 
         <S.Publisher>
+          {/* grab the user avatar not the post image */}
           <S.Icon src={photo} alt={author} />
 
           <S.AuthorandDate>
@@ -34,14 +35,15 @@ export function SinglePost({ title, photo, content, author }: SinglePostProps) {
             </span>
           </S.Edit>
         </S.Publisher>
-
+        <div>
+          <br />
+        </div>
         <Image
           src={photo}
           alt={author}
-          width={1000}
+          width={900}
           height={580}
           priority={false}
-          quality={90}
         />
         <S.Article>{content}</S.Article>
       </S.Container>

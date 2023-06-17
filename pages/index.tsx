@@ -1,3 +1,5 @@
+import fetch from "isomorphic-fetch";
+
 import * as I from "@features/index";
 
 const Home = ({ posts }: any) => {
@@ -17,11 +19,15 @@ const Home = ({ posts }: any) => {
     </I.PageContainer>
   );
 };
-Home.getInitialProps = async () => {
-  const apiUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
-  const res = await fetch(`${apiUrl}/api/posts`);
+
+export const getStaticProps = async () => {
+  const baseUrl =
+    "http://localhost:3000" || process.env.NEXT_PUBLIC_API_BASE_URL;
+  console.log("baseUrl", baseUrl);
+  const res = await fetch(`${baseUrl}/api/posts`);
+
   const { data } = await res.json();
-  return { posts: data };
+  return { props: { posts: data } };
 };
 
 export default Home;
