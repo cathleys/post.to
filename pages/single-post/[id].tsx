@@ -1,7 +1,8 @@
 import React from "react";
 import type { GetStaticPaths, NextPage } from "next";
-import fetch from "isomorphic-fetch";
 import { SinglePost, PageContainer } from "@features/index";
+import { loadSinglePost } from "lib/load-single-post";
+import { loadPosts } from "lib/load-posts";
 
 type PostProps = {
   title: string;
@@ -22,9 +23,9 @@ const SinglePostPage: NextPage<SinglePostPageProps> = ({ post }) => {
   );
 };
 export const getStaticPaths: GetStaticPaths = async () => {
-  const res = await fetch("http://localhost:3000/api/posts");
-  const { data } = await res.json();
-  const paths = data.map((post: any) => {
+  const posts = await loadPosts();
+
+  const paths = posts.map((post: any) => {
     return {
       params: {
         id: `${post.id}`,
@@ -38,12 +39,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 export const getStaticProps = async (context: { params: any }) => {
   const { params } = context;
-  const baseUrl =
-    "http://localhost:3000" || process.env.NEXT_PUBLIC_API_BASE_URL;
-  const res = await fetch(`${baseUrl}/api/posts/${params.id}`);
-  const { data } = await res.json();
+  const post = await loadSinglePost({ params });
 
-  return { props: { post: data } };
+  // Props returned will be passed to the page component
+  return { props: { post } };
 };
 
 export default SinglePostPage;

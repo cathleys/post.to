@@ -1,5 +1,4 @@
-import fetch from "isomorphic-fetch";
-
+import { loadPosts } from "../lib/load-posts";
 import * as I from "@features/index";
 
 const Home = ({ posts }: any) => {
@@ -21,13 +20,10 @@ const Home = ({ posts }: any) => {
 };
 
 export const getStaticProps = async () => {
-  const baseUrl =
-    "http://localhost:3000" || process.env.NEXT_PUBLIC_API_BASE_URL;
-  console.log("baseUrl", baseUrl);
-  const res = await fetch(`${baseUrl}/api/posts`);
+  const posts = await loadPosts();
 
-  const { data } = await res.json();
-  return { props: { posts: data } };
+  // Props returned will be passed to the page component
+  return { props: { posts } };
 };
 
 export default Home;
