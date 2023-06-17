@@ -18,7 +18,7 @@ const Home = ({ posts }: any) => {
   );
 };
 Home.getInitialProps = async () => {
-  const res = await fetch("https://cathto.vercel.app/api/posts");
+  const res = await fetch("http://localhost:3000/api/posts");
   const { data } = await res.json();
   return { posts: data };
 };
