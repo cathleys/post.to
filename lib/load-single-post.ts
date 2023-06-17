@@ -3,7 +3,8 @@ import fetch from "isomorphic-fetch";
 export async function loadSinglePost(context: { params: { id: string } }) {
   const { params } = context;
   // Call an external API endpoint to get posts
-  const baseUrl = "http://127.0.0.1:80";
+  const baseUrl =
+    process.env.NEXT_PUBLIC_API_BASE_URL || process.env.VERCEL_BRANCH_URL;
   const res = await fetch(`${baseUrl}/api/posts/${params.id}`);
   const { data } = await res.json();
 
