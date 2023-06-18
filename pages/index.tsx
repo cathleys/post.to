@@ -22,7 +22,6 @@ const Home = ({ posts }: any) => {
 export const getStaticProps = async () => {
   const posts = await loadPosts();
 
-  // Props returned will be passed to the page component
   return { props: { posts } };
 };
 
