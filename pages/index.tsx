@@ -22,7 +22,7 @@ const Home = ({ posts }: any) => {
 export const getStaticProps = async () => {
   const posts = await loadPosts();
 
-  return { props: { posts } };
+  return { props: { posts }, revalidate: 10 };
 };
 
 export default Home;
