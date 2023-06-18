@@ -6,6 +6,7 @@ type MenuLinkProps = {
   isActive?: boolean;
   href: string;
   text: string;
+  onClick?: () => void;
 };
 
 export const LinkItem = styled.ul<{ isActive?: boolean }>`
@@ -18,9 +19,14 @@ export const LinkItem = styled.ul<{ isActive?: boolean }>`
   font-weight: 500;
 `;
 
-export function NavigationLink({ isActive, text, href }: MenuLinkProps) {
+export function NavigationLink({
+  isActive,
+  text,
+  href,
+  onClick,
+}: MenuLinkProps) {
   return (
-    <LinkItem isActive={isActive}>
+    <LinkItem isActive={isActive} onClick={onClick}>
       <Link href={href} passHref>
         <a>{text}</a>
       </Link>

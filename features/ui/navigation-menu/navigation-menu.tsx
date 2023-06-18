@@ -1,26 +1,23 @@
 import React from "react";
-import { Routes } from "@config/routes";
+import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
+import { Routes } from "@config/routes";
 import Link from "next/link";
 import { Menu, MenuItem } from "@mui/material";
 import { NavigationLink } from "./navigation-link";
-import * as N from "./navigation.style";
 import { ButtonUi } from "@features/index";
 import { ButtonColor } from "../button/button";
+import * as N from "./navigation.style";
 
-const menuLinks = [
-  { text: "Sign up", href: Routes.signup },
-  { text: "Login", href: Routes.login },
+const menuLoggedinLinks = [
+  { text: "Home", href: Routes.home },
+  { text: "Create post", href: Routes.createPost },
+  { text: "Settings", href: Routes.settings },
 ];
-// const menuLoggedinLinks = [
-//   { text: "Home", href: Routes.home },
-//   { text: "Create post", href: Routes.createPost },
-//   { text: "Settings", href: Routes.settings },
-//   { text: "Logout", href: Routes.home }
-// ];
 
 export function NavigationMenu() {
   const router = useRouter();
+  const { status } = useSession();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
@@ -63,7 +60,47 @@ export function NavigationMenu() {
             margin: "0.5rem 0",
           }}
         >
-          {menuLinks.map((menuLink, index) => (
+          {status === "unauthenticated" ? (
+            <>
+              <NavigationLink href="/login" text="Login" />
+              <NavigationLink href="/sign-up" text="Sign Up" />{" "}
+            </>
+          ) : (
+            <>
+              {menuLoggedinLinks.map((menuLink, index) => (
+                <NavigationLink
+                  key={index}
+                  isActive={router.pathname === menuLink.href}
+                  href={menuLink.href}
+                  text={menuLink.text}
+                />
+              ))}
+              <NavigationLink
+                href=""
+                text="Log out"
+                onClick={() => signOut()}
+              />
+            </>
+          )}
+        </MenuItem>
+      </Menu>
+
+      {/* Desktop View */}
+
+      {status === "unauthenticated" ? (
+        <N.MenuLinks>
+          <NavigationLink href={Routes.home} text="Home" />
+          <ButtonUi
+            text="Sign up"
+            href={Routes.signup}
+            color={ButtonColor.white}
+          />
+
+          <ButtonUi text="Login" href={Routes.login} color={ButtonColor.dark} />
+        </N.MenuLinks>
+      ) : (
+        <N.MenuLinks>
+          {menuLoggedinLinks.map((menuLink, index) => (
             <NavigationLink
               key={index}
               isActive={router.pathname === menuLink.href}
@@ -71,19 +108,9 @@ export function NavigationMenu() {
               text={menuLink.text}
             />
           ))}
-        </MenuItem>
-      </Menu>
-      {/* Desktop View */}
-
-      <N.MenuLinks>
-        <ButtonUi
-          text="Sign up"
-          href={Routes.signup}
-          color={ButtonColor.white}
-        />
-
-        <ButtonUi text="Login" href={Routes.login} color={ButtonColor.dark} />
-      </N.MenuLinks>
+          <NavigationLink href="" text="Log out" onClick={() => signOut()} />
+        </N.MenuLinks>
+      )}
     </N.NavBar>
   );
 }

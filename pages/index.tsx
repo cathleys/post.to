@@ -1,3 +1,4 @@
+import { loadPosts } from "../lib/load-posts";
 import * as I from "@features/index";
 
 const Home = ({ posts }: any) => {
@@ -18,10 +19,10 @@ const Home = ({ posts }: any) => {
   );
 };
 
-Home.getInitialProps = async () => {
-  const res = await fetch("http://localhost:3000/api/posts");
-  const { data } = await res.json();
-  return { posts: data };
+export const getStaticProps = async () => {
+  const posts = await loadPosts();
+
+  return { props: { posts }, revalidate: 10 };
 };
 
 export default Home;

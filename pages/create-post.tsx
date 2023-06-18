@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
-import { CreatePost, PageContainer } from "@features/index";
+import { PageContainer } from "@features/index";
+import { CreatePost } from "@features/create-post";
 
 const CreatePostPage: NextPage = () => {
   return (

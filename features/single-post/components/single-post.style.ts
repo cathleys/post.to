@@ -50,6 +50,7 @@ export const AuthorandDate = styled.div`
   justify-content: center;
   font-size: 0.813rem;
   color: #475467;
+  gap: 0.2rem;
 `;
 export const Author = styled.div`
   font-weight: bold;

@@ -40,7 +40,6 @@ export const Anchor = styled.a`
     color: blue;
   }
 `;
-
 export const LoginButton = styled.button`
   background: #007aff;
   padding: 1rem;
@@ -51,5 +50,19 @@ export const LoginButton = styled.button`
 
   &:hover {
     background: #0063e4;
+  }
+`;
+export const ButtonWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 0.3rem;
+
+  ${LoginButton}:nth-child(2) {
+    background: #36a736;
+  }
+
+  ${LoginButton}:last-child {
+    background: red;
   }
 `;
