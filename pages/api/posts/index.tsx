@@ -10,7 +10,7 @@ async function Posts(req: any, res: any) {
     case "GET":
       try {
         const posts = await Post.find({});
-        res.status(200).json({ success: true, data: JSON.stringify(posts) });
+        res.status(200).json({ success: true, data: posts });
       } catch (error) {
         res.status(400).json({ success: false, message: "ERRROR" });
       }
@@ -19,7 +19,7 @@ async function Posts(req: any, res: any) {
     case "POST":
       try {
         const post = await Post.create(req.body);
-        res.status(200).json({ success: true, data: JSON.stringify(post) });
+        res.status(200).json({ success: true, data: post });
       } catch (error) {
         res.status(400).json({ success: false });
       }

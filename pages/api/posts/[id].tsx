@@ -18,7 +18,7 @@ async function PostsbyId(req: any, res: any) {
           return res.status(400).json({ success: false });
         }
 
-        res.status(200).json({ success: true, data: JSON.stringify(post) });
+        res.status(200).json({ success: true, data: post });
       } catch (error) {
         res.status(400).json({ success: false });
       }
@@ -34,7 +34,7 @@ async function PostsbyId(req: any, res: any) {
           return res.status(400).json({ success: false });
         }
 
-        res.status(200).json({ success: true, data: JSON.stringify(post) });
+        res.status(200).json({ success: true, data: post });
       } catch (error) {
         res.status(400).json({ success: false });
       }
