@@ -19,7 +19,7 @@
       "@styles/*": ["styles/*"],
       "@features/*": ["features/*"],
       "@config/*": ["config/*"],
-      "@utils/*": ["utils/*"],
+      "@lib/*": ["lib/*"],
       "@models/*": ["models/*"]
     },
     "plugins": [
