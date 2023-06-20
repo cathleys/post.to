@@ -20,7 +20,7 @@ const Home = ({ posts: p }: InferGetStaticPropsType<typeof getStaticProps>) => {
       <I.ArticleContainer>
         <I.HeaderandButton>
           <h3>Read articles</h3>
-          <I.ButtonUi text="View all" href={""} color={I.ButtonColor.white} />
+          <I.ButtonUi text="View all" href={"/"} color={I.ButtonColor.white} />
         </I.HeaderandButton>
 
         {data?.posts?.map((article: any) => (
