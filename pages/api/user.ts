@@ -1,7 +1,7 @@
-import connectDB from "@utils/connect-db";
-const User = require("@models/user");
+import clientPromise from "@lib/connect-db";
+import User from "@models/user";
 
-connectDB();
+clientPromise;
 
 async function UserRoute(req: any, res: any) {
   const {

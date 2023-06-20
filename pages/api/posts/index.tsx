@@ -1,36 +1,79 @@
-import connectDB from "@utils/connect-db";
+import { NextApiRequest, NextApiResponse } from "next";
+import clientPromise from "@lib/connect-db";
 import Post from "@models/post";
 
-connectDB();
+export const getPosts = async (): Promise<typeof Post> => {
+  const mongoClient = await clientPromise;
+  const data = await mongoClient.db().collection("posts").find().toArray();
+  return JSON.parse(JSON.stringify(data));
+};
 
-async function Posts(req: any, res: any) {
-  const { method } = req;
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+  const {
+    method,
+    query: { id },
+  } = req;
 
   switch (method) {
     case "GET":
       try {
-        const posts = await Post.find({});
+        const data = await getPosts();
 
-        res.status(200).json({ success: true, data: posts });
+        res.status(200).json({ posts: data });
       } catch (error) {
-        res.status(400).json({ success: false, message: "ERRROR" });
+        console.log(error);
+        res.status(400).json("Post Not Found");
       }
       break;
-
     case "POST":
       try {
-        const post = await Post.create(req.body);
+        await clientPromise;
+        const data = Post.create(req.body);
+        console.log("POST: req body", req.body);
 
-        res.status(200).json({ success: true, data: post });
+        res.revalidate("/posts");
+        res.revalidate(`/posts/${id}`);
+        res.status(200).json({ post: data });
       } catch (error) {
-        res.status(400).json({ success: false });
+        console.log(error);
+        res.status(400).json({ error: "Check necessary details to add Post" });
       }
       break;
-
     default:
-      res.status(400).json({ success: false });
-      break;
+      res.status(400).json({ error: "Something went wrong" });
   }
-}
+};
 
-export default Posts;
+export default handler;
+
+// async function Posts(req: NextApiRequest, res: NextApiResponse) {
+//   const { method } = req;
+
+//   switch (method) {
+//     case "GET":
+//       try {
+//         const posts = await Post.find({});
+
+//         res.status(200).json({ posts: JSON.parse(JSON.stringify(posts)) });
+//       } catch (error) {
+//         res.status(400).json({ success: false, message: "ERRROR" });
+//       }
+//       break;
+
+//     case "POST":
+//   try {
+//      const post = await Post.create(req.body);
+
+//      res.status(200).json({ success: true, data: post });
+//       } catch (error) {
+//    res.status(400).json({ success: false });
+//    }
+//     break;
+
+//     default:
+//       res.status(400).json({ success: false });
+//       break;
+//   }
+// }
+
+// export default Posts;
