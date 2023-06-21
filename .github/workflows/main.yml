@@ -23,6 +23,8 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
+      - name: Set up environment variables
+        run: echo "MONGODB_URI=${{ secrets.MONGODB_URI }}" >> $GITHUB_ENV
       - run: npm ci
       - run: npm run lint
       - run: npm run prettier
