@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import Image from "next/image";
 import articleImage from "../public/icons/article-thumbnail.svg";
-import { PostArticle } from "@features/ui";
+import { PostArticle } from "@features/ui/posts/post-article";
 import * as A from "@features/ui/posts/post-article.style";
 
 const meta: Meta<typeof PostArticle> = {

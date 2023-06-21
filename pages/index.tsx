@@ -1,27 +1,21 @@
-import * as I from "@features/index";
+import { GetStaticProps } from "next";
+import { getPosts } from "@features/home";
+import { PageContainer, PostArticleList } from "@features/ui";
+import { HeroSection } from "@features/hero";
 
-const Home = ({ posts }: any) => {
+const Home = () => {
   return (
-    <I.PageContainer>
-      <I.HeroSection />
-      <I.ArticleContainer>
-        <I.HeaderandButton>
-          <h3>Read articles</h3>
-          <I.ButtonUi text="View all" href={""} color={I.ButtonColor.white} />
-        </I.HeaderandButton>
-
-        {posts?.map((article: any) => (
-          <I.PostArticle key={article._id} {...article} />
-        ))}
-      </I.ArticleContainer>
-    </I.PageContainer>
+    <PageContainer>
+      <HeroSection />
+      <PostArticleList />
+    </PageContainer>
   );
 };
 
-Home.getInitialProps = async () => {
-  const res = await fetch("http://localhost:3000/api/posts");
-  const { data } = await res.json();
-  return { posts: data };
+export const getStaticProps: GetStaticProps = async () => {
+  const data = await getPosts();
+
+  return { props: { posts: data }, revalidate: 60 };
 };
 
 export default Home;

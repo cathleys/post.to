@@ -1,7 +1,7 @@
-import Link from "next/link";
-import * as A from "./post-article.style";
-import Image from "next/image";
 import { Routes } from "@config/routes";
+import Image from "next/image";
+import * as A from "./post-article.style";
+import Link from "next/link";
 
 type ArticleProps = {
   _id: string;
@@ -11,13 +11,14 @@ type ArticleProps = {
 };
 export function PostArticle({ _id, title, photo, desc }: ArticleProps) {
   return (
-    <A.Container>
-      <Link
-        href={{
-          pathname: Routes.singlePost,
-          query: { id: _id },
-        }}
-      >
+    <Link
+      href={{
+        pathname: Routes.singlePost,
+        query: { id: _id },
+      }}
+      passHref
+    >
+      <A.Container>
         <A.Wrapper>
           <A.Date>Date</A.Date>
           <A.TitleandSentence>
@@ -25,15 +26,18 @@ export function PostArticle({ _id, title, photo, desc }: ArticleProps) {
             <A.Sentence>{desc}</A.Sentence>
           </A.TitleandSentence>
         </A.Wrapper>
-      </Link>
-      <Image
-        src={photo}
-        alt="post image"
-        width={210}
-        height={170}
-        style={{ borderRadius: "0.5rem" }}
-        priority={false}
-      />
-    </A.Container>
+
+        <Image
+          src={photo}
+          alt="post image"
+          width={210}
+          height={170}
+          style={{ borderRadius: "0.5rem" }}
+          priority={false}
+          layout="responsive"
+          loading="lazy"
+        />
+      </A.Container>
+    </Link>
   );
 }
