@@ -1,9 +1,7 @@
 // @ts-nocheck
 
 import { MongoClient } from "mongodb";
-import dotenv from "dotenv";
 
-dotenv.config();
 const mongodbURI = process.env.MONGODB_URI;
 
 if (!mongodbURI) {

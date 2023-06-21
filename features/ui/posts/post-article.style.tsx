@@ -26,8 +26,10 @@ export const Container = styled.div`
   padding: 1.5rem 1.25rem 1.5rem 1.875rem;
   box-shadow: 0px 21px 43px -26px rgba(150, 145, 150, 1);
 
-  &:hover {
+  &:hover,
+  &:focus {
     border: 1px solid #667085;
+    background: #f5f5f5;
   }
 
   @media (max-width: 64em) {

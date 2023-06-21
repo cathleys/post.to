@@ -3,6 +3,7 @@ import * as S from "./single-post.style";
 import Image from "next/image";
 import { AiFillEdit } from "react-icons/ai";
 import { BsFillTrashFill } from "react-icons/bs";
+import { useEffect, useState } from "react";
 
 type SinglePostProps = {
   title: string;
@@ -11,6 +12,21 @@ type SinglePostProps = {
   content: string;
 };
 export function SinglePost({ title, photo, content, author }: SinglePostProps) {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate loading delay for demonstration purposes
+    const delay = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000); // Change the delay as needed
+
+    return () => clearTimeout(delay); // Clear the timeout when component unmounts
+  }, []);
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+
   return (
     <>
       <S.Container>
@@ -35,7 +51,14 @@ export function SinglePost({ title, photo, content, author }: SinglePostProps) {
           </S.Edit>
         </S.Publisher>
 
-        <Image src={photo} alt={author} width={1000} height={580} />
+        <Image
+          src={photo}
+          alt={author}
+          width={1000}
+          height={580}
+          layout="responsive"
+          loading="lazy"
+        />
         <S.Article>{content}</S.Article>
       </S.Container>
       <S.RecommendedContainer>

@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import clientPromise from "@lib/connect-db";
 import Post from "@models/post";
+import NextCors from "nextjs-cors";
 
 export const getPosts = async (): Promise<typeof Post> => {
   const mongoClient = await clientPromise;
@@ -14,6 +15,15 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     query: { id },
   } = req;
 
+  await NextCors(req, res, {
+    methods: ["GET", "POST"],
+    origin: [
+      "http://localhost:3000",
+      "http://localhost:3001",
+      "http://localhost:3002",
+    ],
+    optionsSuccessStatus: 200,
+  });
   switch (method) {
     case "GET":
       try {
