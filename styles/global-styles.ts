@@ -10,17 +10,11 @@ ${normalize}
 
     a {
         color: #1d2939;
-        text-decoration: none;
         cursor: pointer;
-
-        &:hover {
-           color: rgba(108, 122, 137) ;
-         
-        }
     }
 
     li {
-        list-style: none;
+        list-style-type: none;
     }
   
 `;

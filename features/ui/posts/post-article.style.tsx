@@ -7,7 +7,7 @@ export const ArticleContainer = styled.div`
   justify-content: center;
   align-items: center;
   background: #f2f4f7;
-  gap: 1rem;
+  gap: 0.4rem;
 `;
 export const HeaderandButton = styled.div`
   display: flex;
@@ -22,7 +22,7 @@ export const Container = styled.div`
   width: auto;
   background: white;
   border: 1px solid white;
-  border-radius: 1.25rem;
+  border-radius: 0.5rem;
   padding: 1.5rem 1.25rem 1.5rem 1.875rem;
   box-shadow: 0px 21px 43px -26px rgba(150, 145, 150, 1);
 
@@ -40,9 +40,15 @@ export const Wrapper = styled.div`
   flex-direction: column;
   align-items: flex-start;
   padding-right: 1.25rem;
+  cursor: pointer;
 
   @media (max-width: 64em) {
     padding: 0;
+  }
+
+  &:hover,
+  &:focus {
+    color: blue;
   }
 `;
 export const Date = styled.p`

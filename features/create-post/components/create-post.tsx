@@ -33,6 +33,7 @@ export function CreatePost() {
         </P.LabelandRemove>
         <P.InputandTextArea>
           <P.Input type="text" placeholder="Title" />
+          <P.Input type="text" placeholder="Summary" />
           <QuillNoSSRWrapper
             theme="snow"
             modules={modules}
