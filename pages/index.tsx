@@ -1,6 +1,6 @@
 import * as I from "@features/index";
 
-const Home = ({ posts }: any) => {
+const Home = () => {
   return (
     <I.PageContainer>
       <I.HeroSection />
@@ -10,18 +10,12 @@ const Home = ({ posts }: any) => {
           <I.ButtonUi text="View all" href={""} color={I.ButtonColor.white} />
         </I.HeaderandButton>
 
-        {posts?.map((article: any) => (
-          <I.PostArticle key={article._id} {...article} />
-        ))}
+        <I.PostArticle />
+        <I.PostArticle />
+        <I.PostArticle />
       </I.ArticleContainer>
     </I.PageContainer>
   );
-};
-
-Home.getInitialProps = async () => {
-  const res = await fetch("http://localhost:3000/api/posts");
-  const { data } = await res.json();
-  return { posts: data };
 };
 
 export default Home;

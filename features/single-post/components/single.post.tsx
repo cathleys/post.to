@@ -6,11 +6,18 @@ import { BsFillTrashFill } from "react-icons/bs";
 
 type SinglePostProps = {
   title: string;
+  desc: string;
+  content: string;
   photo: string;
   author: string;
-  content: string;
 };
-export function SinglePost({ title, photo, content, author }: SinglePostProps) {
+export function SinglePost({
+  title,
+  photo,
+  content,
+  desc,
+  author,
+}: SinglePostProps) {
   return (
     <>
       <S.Container>
@@ -36,6 +43,7 @@ export function SinglePost({ title, photo, content, author }: SinglePostProps) {
         </S.Publisher>
 
         <Image src={photo} alt={author} width={1000} height={580} />
+        <S.Article>{desc}</S.Article>
         <S.Article>{content}</S.Article>
       </S.Container>
       <S.RecommendedContainer>
