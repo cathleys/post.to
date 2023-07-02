@@ -35,8 +35,5 @@ export const MenuButton = styled.button`
   border: none;
   outline: none;
   background: none;
-  @media (min-width: 64em) {
-    display: none;
-  }
 `;
 export const MenuIcon = styled.img``;

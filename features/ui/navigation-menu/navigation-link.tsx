@@ -17,12 +17,14 @@ export const LinkItem = styled.ul<{ isActive?: boolean }>`
   padding: 0 0.938rem 0 0.938rem;
   font-weight: 500;
 `;
-
+export const Anchor = styled.a`
+  text-decoration: none;
+`;
 export function NavigationLink({ isActive, text, href }: MenuLinkProps) {
   return (
     <LinkItem isActive={isActive}>
       <Link href={href} passHref>
-        <a>{text}</a>
+        <Anchor>{text}</Anchor>
       </Link>
     </LinkItem>
   );
