@@ -1,56 +1,130 @@
 import React, { useState } from "react";
-import dynamic from "next/dynamic";
 import "react-quill/dist/quill.snow.css";
-import { formats, modules } from "../api/quill-data";
+import { QuillNoSSRWrapper, formats, modules } from "../api/quill-data";
 import * as P from "./create-post.style";
 import { ButtonUi } from "@features/index";
 import { ButtonColor } from "@features/ui/button/button";
-
-const QuillNoSSRWrapper = dynamic(import("react-quill"), {
-  ssr: false,
-  loading: () => <div>Loading...</div>,
-});
+import { useRouter } from "next/router";
+import { ToastContainer, toast } from "react-toastify";
 
 export function CreatePost() {
-  const [value, setValue] = useState("");
+  const router = useRouter();
+  const [title, setTitle] = useState("");
+  const [desc, setDesc] = useState("");
+  const [content, setContent] = useState("");
+  const [photo, setPhoto] = useState("");
+
+  const CLOUD_NAME = "dr04ygceb";
+  const UPLOAD_PRESET = "cathto-upload-image";
+
+  const createPost = async (e: any) => {
+    e.preventDefault();
+    if (!photo || !title || !desc || !content) {
+      toast.error("All fields are required");
+      return;
+    }
+
+    try {
+      const imageUrl = await uploadImage();
+      const res = await fetch("http://localhost:3000/api/posts", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title,
+          desc,
+          content,
+          imageUrl,
+        }),
+      });
+      if (!res.ok) {
+        throw new Error("Error occured");
+      }
+      toast.success("Post created successfully");
+      toast.loading("You'll be redirected to the post after a few seconds");
+      const post = await res.json();
+
+      await router.push(`/single-post/${post.data._id}`);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const uploadImage = async () => {
+    if (!photo) return;
+
+    const data = new FormData();
+
+    data.append("file", photo);
+    data.append("upload_preset", UPLOAD_PRESET);
+    try {
+      const res = await fetch(
+        `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
+        {
+          method: "POST",
+          body: data,
+        }
+      );
+
+      const image = await res.json();
+
+      const imageUrl = image["secure_url"];
+
+      return imageUrl;
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <P.Container>
-      <P.ImagePost src="/icons/post-1.png" alt="image post" />
-
-      <P.PostWrapper id="postform" autoComplete="off">
-        <P.LabelandRemove>
-          <P.Label htmlFor="cover image">
-            Upload Cover
+      {photo && (
+        // @ts-ignore
+        <P.ImagePost src={URL.createObjectURL(photo)} alt="image post" />
+      )}
+      <P.PostForm id="postform">
+        <P.ImageArea>
+          <P.Label htmlFor="image">
+            Upload Image
             <input
+              id="image"
               type="file"
-              id="cover image"
-              name="cover image"
               style={{ display: "none" }}
+              onChange={(e: any) => setPhoto(e.target.files[0])}
             />
           </P.Label>
-          <P.Remove>Remove</P.Remove>
-        </P.LabelandRemove>
+        </P.ImageArea>
         <P.InputandTextArea>
-          <P.Input type="text" placeholder="Title" />
-          <P.Input type="text" placeholder="Summary" />
+          <P.Input
+            type="text"
+            placeholder="Title"
+            onChange={(e) => setTitle(e.target.value)}
+          />
+          <P.Input
+            type="text"
+            placeholder="Description"
+            onChange={(e) => setDesc(e.target.value)}
+          />
           <QuillNoSSRWrapper
             theme="snow"
             modules={modules}
             formats={formats}
-            value={value}
-            onChange={setValue}
+            onChange={setContent}
             style={{
               height: "300px",
             }}
           />
         </P.InputandTextArea>
         <br />
-        <P.ButtonWrapper>
-          <ButtonUi text="Publish" href="/" color={ButtonColor.dark} />
-          <ButtonUi text="Save as draft" href="/" color={ButtonColor.white} />
-        </P.ButtonWrapper>
-      </P.PostWrapper>
+
+        <ButtonUi
+          text="Publish"
+          color={ButtonColor.dark}
+          onClick={createPost}
+        />
+      </P.PostForm>
+      <ToastContainer autoClose={4000} />
     </P.Container>
   );
 }

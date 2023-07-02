@@ -20,7 +20,7 @@ export const ImagePost = styled.img`
   margin-bottom: 1rem;
 `;
 
-export const PostWrapper = styled.form`
+export const PostForm = styled.form`
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
@@ -43,6 +43,15 @@ export const Input = styled.input`
   }
 `;
 
+export const Textarea = styled.textarea`
+  border: 1px solid #dadada;
+  border-radius: 0.5rem;
+  padding: 1rem 0.938rem;
+  height: 250px;
+  &:focus {
+    outline: none;
+  }
+`;
 export const Label = styled.label`
   border-radius: 0.5rem;
   border: 1px solid #d0d5dd;
@@ -57,7 +66,7 @@ export const Label = styled.label`
   }
 `;
 
-export const LabelandRemove = styled.div`
+export const ImageArea = styled.div`
   display: inline-flex;
   align-items: center;
   gap: 1.438rem;
