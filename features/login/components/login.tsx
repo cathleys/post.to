@@ -7,10 +7,10 @@ export function Login() {
     <L.Container>
       <L.LoginWrapper>
         <h2>Login</h2>
-        <L.LoginForm id="loginform" autoComplete="off">
+        <L.LoginForm id="loginform">
           <L.Label>
-            Email
-            <L.Input type="email" name="email" />
+            Username
+            <L.Input type="text" name="Username" />
           </L.Label>
           <L.Label>
             Password
