@@ -11,8 +11,8 @@ export function PageContainer({ children }: PageContainerProps) {
   return (
     <>
       <Head>
-        <title>Cath.to</title>
-        <meta property="og:title" content="Cath.to" key="title" />
+        <title>Post.to</title>
+        <meta property="og:title" content="Post.to" key="title" />
       </Head>
       <NavigationMenu />
       <main>{children}</main>

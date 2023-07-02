@@ -41,7 +41,7 @@ export function Settings() {
 
           <br />
           <div>
-            <ButtonUi text="Save" href="" color={ButtonColor.dark} />
+            <ButtonUi text="Save" color={ButtonColor.dark} />
           </div>
           <br />
           <S.DeleteAccount>Delete Account</S.DeleteAccount>

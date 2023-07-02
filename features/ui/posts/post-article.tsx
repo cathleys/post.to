@@ -1,41 +1,57 @@
-import Link from "next/link";
-import * as A from "./post-article.style";
-import Image from "next/image";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import { Routes } from "@config/routes";
+import { Loader } from "@features/index";
+import * as A from "./post.style";
 
-// type ArticleProps = {
-//   _id: string;
-//   title: string;
-//   photo: string;
-//   desc: string;
-// };
+export type ArticleProps = {
+  _id: string;
+  title: string;
+  imageUrl: string;
+  desc: string;
+  createdAt: Date;
+};
 
-// { _id, title, photo, desc }: ArticleProps
-export function PostArticle() {
+export function PostArticle({
+  _id,
+  title,
+  imageUrl,
+  desc,
+  createdAt,
+}: ArticleProps) {
+  const router = useRouter();
+
+  const [isLoading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (isLoading) {
+      singlePost();
+    } else {
+      setLoading(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isLoading]);
+
+  if (isLoading) return <Loader />;
+
+  const singlePost = () => {
+    router.push({
+      pathname: Routes.singlePost,
+      query: { id: _id },
+    });
+  };
   return (
     <A.Container>
-      <Link
-        href={{
-          pathname: Routes.singlePost,
-          query: { id: 1 },
-        }}
-      >
-        <A.Wrapper>
-          <A.Date>Date</A.Date>
-          <A.TitleandSentence>
-            <A.Title>Title</A.Title>
-            <A.Sentence>Summary</A.Sentence>
-          </A.TitleandSentence>
-        </A.Wrapper>
-      </Link>
-      <Image
-        src={"/icons/post-1.png"}
-        alt="post image"
-        width={210}
-        height={170}
-        style={{ borderRadius: "0.5rem" }}
-        priority={false}
-      />
+      <A.Wrapper>
+        <A.Date>{new Date(createdAt).toDateString()}</A.Date>
+        <A.TitleandSentence>
+          <A.Title>{title}</A.Title>
+          <A.Sentence>{desc}</A.Sentence>
+        </A.TitleandSentence>
+
+        <A.ReadMore onClick={singlePost}>Read More</A.ReadMore>
+      </A.Wrapper>
+      <A.PostImage src={imageUrl} alt="post image" />
     </A.Container>
   );
 }
