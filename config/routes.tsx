@@ -4,6 +4,7 @@ export const Routes = {
   login: "/login",
   logout: "/logout",
   createPost: "/create-post",
+  edit: "/single-post/[id]/edit",
   settings: "/settings",
   singlePost: "/single-post/[id]",
 };
