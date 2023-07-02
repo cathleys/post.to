@@ -29,15 +29,20 @@ export const Title = styled.h1`
 
   @media (max-width: 64em) {
     font-size: 1.75rem;
-    margin: 2.5rem 0 1rem 0;
+    margin: 2.5rem 0;
   }
 `;
 
 export const Publisher = styled.div`
-  display: inline-flex;
-  gap: 0 1rem;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 `;
-
+export const IconAuthorAndDate = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+`;
 export const Icon = styled.img`
   border-radius: 50%;
   height: 3.125rem;
@@ -55,11 +60,29 @@ export const Author = styled.div`
   font-weight: bold;
 `;
 
+export const Anchor = styled.a`
+  &:hover {
+    border-radius: 0.3rem;
+    background: #f5f5f5;
+  }
+`;
 export const Edit = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  gap: 0.5rem;
+  gap: 1.2rem;
+  font-size: 0.813rem;
+  color: #475467;
+`;
+
+export const ArtContainer = styled.div`
+  padding: 5rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #f2f4f7;
+  gap: 1rem;
 `;
 export const Article = styled.div`
   text-align: justify;
@@ -87,11 +110,33 @@ export const Span = styled.div`
   }
 `;
 
-export const ArticleContainer = styled.div`
+export const PostImage = styled.img`
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background: #f2f4f7;
-  gap: 1rem;
+  object-fit: cover;
+  width: 100%;
+  height: 15rem;
+  border-radius: 0.3rem;
+  margin: 0 auto;
+`;
+
+export const Buttons = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 0.5rem;
+`;
+export const Cancel = styled.button`
+  border-radius: 0.5rem;
+  padding: 0.75rem 0.875rem;
+  background: #f2f4f;
+  font-size: 0.875rem;
+  border: 1px solid #ccc;
+`;
+export const Delete = styled.button`
+  border-radius: 0.5rem;
+  padding: 0.75rem 0.875rem;
+  color: white;
+  background: #1d2939;
+  border: 1px solid #1d2939;
+  font-size: 0.875rem;
 `;
