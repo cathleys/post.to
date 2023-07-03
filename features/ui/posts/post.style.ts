@@ -32,8 +32,8 @@ export const Container = styled.div`
   }
 
   @media (max-width: 64em) {
-    margin: 1rem;
-    padding: 1.5rem 1rem;
+    margin: auto;
+    gap: 1rem;
   }
 `;
 export const Wrapper = styled.div`
@@ -42,9 +42,11 @@ export const Wrapper = styled.div`
   justify-content: space-between;
   align-items: flex-start;
   padding-right: 1.25rem;
+  white-space: nowrap;
 
   @media (max-width: 64em) {
     padding: 0;
+    gap: 1rem;
   }
 `;
 export const Date = styled.p`
@@ -53,12 +55,12 @@ export const Date = styled.p`
   margin: 0;
   color: #667085;
 `;
-export const Title = styled.h2`
-  font-weight: 100;
+export const Title = styled.h3`
   font-size: 1.625rem;
   margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
   @media (max-width: 64em) {
-    padding-bottom: 1rem;
   }
 `;
 export const Sentence = styled.p`
@@ -74,14 +76,18 @@ export const TitleandSentence = styled.div`
   flex-direction: column;
   gap: 0.625rem;
   max-width: 38.125rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 export const PostImage = styled.img`
   width: 15rem;
   border-radius: 0.5rem;
 `;
 
-export const ReadMore = styled.a`
-  text-decoration: none;
+export const ReadMore = styled.button`
+  outline: none;
+  background: none;
+  border: none;
   &:hover,
   &:focus {
     color: orange;

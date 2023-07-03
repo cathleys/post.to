@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { Routes } from "@config/routes";
-import { Loader } from "@features/index";
+import LoadingButton from "@mui/lab/LoadingButton";
 import * as A from "./post.style";
 
 export type ArticleProps = {
@@ -20,26 +20,15 @@ export function PostArticle({
   createdAt,
 }: ArticleProps) {
   const router = useRouter();
-
-  const [isLoading, setLoading] = useState(false);
-
-  useEffect(() => {
-    if (isLoading) {
-      singlePost();
-    } else {
-      setLoading(false);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isLoading]);
-
-  if (isLoading) return <Loader />;
-
-  const singlePost = () => {
+  const [loading, setLoading] = useState(false);
+  const goToSingePost = () => {
+    setLoading(!loading);
     router.push({
       pathname: Routes.singlePost,
       query: { id: _id },
     });
   };
+
   return (
     <A.Container>
       <A.Wrapper>
@@ -49,7 +38,13 @@ export function PostArticle({
           <A.Sentence>{desc}</A.Sentence>
         </A.TitleandSentence>
 
-        <A.ReadMore onClick={singlePost}>Read More</A.ReadMore>
+        <LoadingButton
+          onClick={goToSingePost}
+          loading={loading}
+          loadingPosition="end"
+        >
+          <span>Read More</span>
+        </LoadingButton>
       </A.Wrapper>
       <A.PostImage src={imageUrl} alt="post image" />
     </A.Container>

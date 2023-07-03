@@ -19,13 +19,14 @@ export const LinkItem = styled.ul<{ isActive?: boolean }>`
 `;
 export const Anchor = styled.a`
   text-decoration: none;
+  &:hover {
+    color: orange;
+  }
 `;
-export function NavigationLink({ isActive, text, href }: MenuLinkProps) {
+export function NavigationLink({ text, href }: MenuLinkProps) {
   return (
-    <LinkItem isActive={isActive}>
-      <Link href={href} passHref>
-        <Anchor>{text}</Anchor>
-      </Link>
-    </LinkItem>
+    <Link href={href} passHref>
+      <Anchor>{text}</Anchor>
+    </Link>
   );
 }
