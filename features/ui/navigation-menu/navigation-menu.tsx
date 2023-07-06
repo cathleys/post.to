@@ -11,6 +11,7 @@ import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import * as N from "./navigation.style";
 import { UserContext } from "@features/ui/user-context";
+import { DarkModeToggle } from "../dark-mode-toggle";
 
 const navLinks = [
   { text: "Home", href: Routes.home },
@@ -68,51 +69,53 @@ export function NavigationMenu() {
             </Anchor>
           </Link>
         </N.Logo>
-
-        <N.MenuButton
-          id="basic-button"
-          aria-controls={open ? "basic-menu" : undefined}
-          aria-haspopup="true"
-          aria-expanded={open ? "true" : undefined}
-          onClick={handleClick}
-        >
-          <N.MenuIcon src="/icons/menu-icon.svg" alt="menu" />
-        </N.MenuButton>
-        <Menu
-          id="basic-menu"
-          anchorEl={anchorEl}
-          open={open}
-          onClose={handleClose}
-          MenuListProps={{
-            "aria-labelledby": "basic-button",
-          }}
-        >
-          <MenuItem
-            style={{
-              flexDirection: "column",
-              fontFamily: "Inter",
+        <N.DarkAndMenu>
+          <DarkModeToggle />
+          <N.MenuButton
+            id="basic-button"
+            aria-controls={open ? "basic-menu" : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? "true" : undefined}
+            onClick={handleClick}
+          >
+            <N.MenuIcon src="/icons/menu-icon.svg" alt="menu" />
+          </N.MenuButton>
+          <Menu
+            id="basic-menu"
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleClose}
+            MenuListProps={{
+              "aria-labelledby": "basic-button",
             }}
           >
-            {userInfo?.username && (
-              <>
-                {navLinks.map((link: any, index) => (
-                  <NavigationLink key={index} {...link} />
-                ))}
-                <NavigationLink
-                  href={""}
-                  text="Log out"
-                  onClick={() => setLogout(true)}
-                />
-              </>
-            )}
-            {!userInfo?.username && (
-              <>
-                <NavigationLink href={Routes.signup} text="Sign Up" />
-                <NavigationLink href={Routes.login} text="Login" />
-              </>
-            )}
-          </MenuItem>
-        </Menu>
+            <MenuItem
+              style={{
+                flexDirection: "column",
+                fontFamily: "Inter",
+              }}
+            >
+              {userInfo?.username && (
+                <>
+                  {navLinks.map((link: any, index) => (
+                    <NavigationLink key={index} {...link} />
+                  ))}
+                  <NavigationLink
+                    href={""}
+                    text="Log out"
+                    onClick={() => setLogout(true)}
+                  />
+                </>
+              )}
+              {!userInfo?.username && (
+                <>
+                  <NavigationLink href={Routes.signup} text="Sign Up" />
+                  <NavigationLink href={Routes.login} text="Login" />
+                </>
+              )}
+            </MenuItem>
+          </Menu>
+        </N.DarkAndMenu>
       </N.NavBar>
 
       <Modal open={logout} onClose={() => setLogout(false)}>
