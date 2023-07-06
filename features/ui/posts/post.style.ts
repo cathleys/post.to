@@ -38,14 +38,13 @@ export const Container = styled.div`
 `;
 export const Wrapper = styled.div`
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
-  padding-right: 1.25rem;
-  white-space: nowrap;
+  padding: auto;
 
   @media (max-width: 64em) {
-    padding: 0;
     gap: 1rem;
   }
 `;
@@ -58,29 +57,25 @@ export const Date = styled.p`
 export const Title = styled.h3`
   font-size: 1.625rem;
   margin: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  @media (max-width: 64em) {
-  }
 `;
 export const Sentence = styled.p`
   margin: 0;
   color: #475467;
-  @media (max-width: 64em) {
-    display: none;
-  }
 `;
 
 export const TitleandSentence = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.625rem;
-  max-width: 38.125rem;
+  max-width: 30rem;
+  white-space: wrap;
   overflow: hidden;
   text-overflow: ellipsis;
 `;
 export const PostImage = styled.img`
   width: 15rem;
+  height: 10rem;
+  object-fit: cover;
   border-radius: 0.5rem;
 `;
 

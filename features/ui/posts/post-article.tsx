@@ -41,7 +41,8 @@ export function PostArticle({
         <LoadingButton
           onClick={goToSingePost}
           loading={loading}
-          loadingPosition="end"
+          loadingIndicator="Fetching…"
+          style={{ fontFamily: "Inter" }}
         >
           <span>Read More</span>
         </LoadingButton>

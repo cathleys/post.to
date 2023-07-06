@@ -49,7 +49,9 @@ export const LoginButton = styled.button`
   color: white;
   width: 100%;
 
-  &:hover {
+  &:hover,
+  &:active {
     background: #0063e4;
+    box-shadow: 0px 18px 30px -20px rgba(0, 0, 0, 0.75);
   }
 `;

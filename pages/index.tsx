@@ -1,9 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
 import * as I from "@features/index";
 import * as A from "@features/ui/posts/post-article";
 import * as P from "@features/ui/posts/post.style";
+import { useQuery } from "react-query";
+import axios from "axios";
 
 const Home = ({ posts }: any) => {
+  const [articlesToShow, setArticlesToShow] = useState(7);
+  const { data, isLoading, isError } = useQuery(
+    "posts",
+    async () => {
+      return axios("http://localhost:3000/api/posts") as any;
+    },
+    {
+      initialData: { data: { posts: posts } },
+    }
+  );
+
+  if (isLoading) {
+    return <I.Loader />;
+  }
+  if (isError) {
+    return <h2>Something went wrong, refresh browser.</h2>;
+  }
+  const renderedArticles = data?.data?.data
+    ?.slice(0, articlesToShow)
+    .map((post: A.ArticleProps) => {
+      return <A.PostArticle key={post._id} {...post} />;
+    });
+  const loadMore = () => {
+    setArticlesToShow(articlesToShow + 10);
+  };
   return (
     <I.PageContainer>
       <I.HeroSection />
@@ -13,9 +40,14 @@ const Home = ({ posts }: any) => {
           <I.ButtonUi text="View all" color={I.ButtonColor.white} />
         </P.HeaderandButton>
 
-        {posts?.data?.map((post: A.ArticleProps) => {
-          return <A.PostArticle key={post._id} {...post} />;
-        })}
+        {renderedArticles}
+        {data?.data?.data?.length > articlesToShow && (
+          <I.ButtonUi
+            onClick={loadMore}
+            text="Load More"
+            color={I.ButtonColor.white}
+          />
+        )}
       </P.ArticleContainer>
     </I.PageContainer>
   );
