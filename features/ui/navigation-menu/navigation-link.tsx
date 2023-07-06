@@ -6,27 +6,21 @@ type MenuLinkProps = {
   isActive?: boolean;
   href: string;
   text: string;
+  onClick?: () => void;
 };
 
-export const LinkItem = styled.ul<{ isActive?: boolean }>`
-  background: ${(props) =>
-    props.isActive ? "-webkit-linear-gradient(#C41740, #EA9C28)" : "none"};
-  -webkit-background-clip: ${(props) => (props.isActive ? "text" : "none")};
-  -webkit-text-fill-color: ${(props) =>
-    props.isActive ? "transparent" : "none"};
-  padding: 0 0.938rem 0 0.938rem;
-  font-weight: 500;
-`;
 export const Anchor = styled.a`
+  display: flex;
   text-decoration: none;
+
   &:hover {
     color: orange;
   }
 `;
-export function NavigationLink({ text, href }: MenuLinkProps) {
+export function NavigationLink({ text, href, onClick }: MenuLinkProps) {
   return (
     <Link href={href} passHref>
-      <Anchor>{text}</Anchor>
+      <Anchor onClick={onClick}>{text}</Anchor>
     </Link>
   );
 }
