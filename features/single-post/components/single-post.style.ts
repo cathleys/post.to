@@ -1,5 +1,17 @@
 import styled from "styled-components";
 
+export const style = {
+  position: "absolute" as "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  borderRadius: "0.3rem",
+  boxShadow: 24,
+  outline: "none",
+  p: 4,
+};
 export const Container = styled.div`
   padding: 0 11.875rem 2rem 11.875rem;
 
@@ -35,6 +47,7 @@ export const Title = styled.h1`
 
 export const Publisher = styled.div`
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   width: 100%;
 `;
@@ -53,8 +66,9 @@ export const AuthorandDate = styled.div`
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  font-size: 0.813rem;
+  font-size: 0.9rem;
   color: #475467;
+  gap: 0.3rem;
 `;
 export const Author = styled.div`
   font-weight: bold;
