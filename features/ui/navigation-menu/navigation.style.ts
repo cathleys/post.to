@@ -18,7 +18,6 @@ export const NavBar = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 1.25rem 6.5rem;
-  background: white;
   box-shadow: 0px 4px 70px rgba(30, 40, 52, 0.08);
 
   @media (max-width: 64em) {
@@ -34,6 +33,11 @@ export const Logo = styled.div`
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
+`;
+
+export const DarkAndMenu = styled.div`
+  display: flex;
+  gap: 1rem;
 `;
 export const MenuLinks = styled.div`
   display: flex;

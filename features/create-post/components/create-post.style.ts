@@ -55,7 +55,7 @@ export const Textarea = styled.textarea`
 export const Label = styled.label`
   border-radius: 0.5rem;
   border: 1px solid #d0d5dd;
-  background: white;
+
   padding: 0.75rem 0.875rem;
   text-align: center;
   font-weight: 600;
