@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "react-quill/dist/quill.snow.css";
 import { QuillNoSSRWrapper, formats, modules } from "../api/quill-data";
 import * as P from "./create-post.style";
@@ -6,13 +6,15 @@ import { ButtonUi } from "@features/index";
 import { ButtonColor } from "@features/ui/button/button";
 import { useRouter } from "next/router";
 import { ToastContainer, toast } from "react-toastify";
+import { UserContext } from "@features/ui";
 
 export function CreatePost() {
   const router = useRouter();
+  const { userInfo } = useContext(UserContext);
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [content, setContent] = useState("");
-  const [photo, setPhoto] = useState("");
+  const [photo, setPhoto] = useState<Blob | null>(null);
 
   const CLOUD_NAME = "dr04ygceb";
   const UPLOAD_PRESET = "cathto-upload-image";
@@ -28,6 +30,7 @@ export function CreatePost() {
       const imageUrl = await uploadImage();
       const res = await fetch("http://localhost:3000/api/posts", {
         method: "POST",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },
@@ -41,11 +44,14 @@ export function CreatePost() {
       if (!res.ok) {
         throw new Error("Error occured");
       }
-      toast.success("Post created successfully");
-      toast.loading("You'll be redirected to the post after a few seconds");
       const post = await res.json();
 
-      await router.push(`/single-post/${post.data._id}`);
+      toast.success("Post created successfully");
+      toast.loading("You'll be redirected to the post after a few seconds");
+
+      router.push(
+        `/single-post/${post?.data?._id}?author=${userInfo?.username}`
+      );
     } catch (error) {
       console.log(error);
     }
@@ -80,7 +86,6 @@ export function CreatePost() {
   return (
     <P.Container>
       {photo && (
-        // @ts-ignore
         <P.ImagePost src={URL.createObjectURL(photo)} alt="image post" />
       )}
       <P.PostForm id="postform">

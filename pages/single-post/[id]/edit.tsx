@@ -21,22 +21,24 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 export const getStaticProps = async (context: any) => {
   const { params } = context;
-  const res = await fetch(`http://localhost:3000/api/posts/${params?.id}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-      "User-Agent": "*",
+  const postRes = await fetch(`http://localhost:3000/api/posts/${params?.id}`);
+  const postData = await postRes.json();
+
+  // Fetch additional data for pre-filling form fields (e.g., title, desc, content)
+  const dataRes = await fetch("http://localhost:3000/api/posts");
+  const data = await dataRes.json();
+  return {
+    props: {
+      post: postData,
+      data: data?.data || [], // Pass the additional data to the component
     },
-  });
-  const data = await res.json();
-  return { props: { post: data } };
+  };
 };
 
 const EditPage = ({ post }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  const { data } = post;
   return (
     <PageContainer>
-      <EditPost post={data} />
+      <EditPost post={post} />
     </PageContainer>
   );
 };

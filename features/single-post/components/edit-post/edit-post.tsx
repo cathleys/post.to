@@ -3,40 +3,24 @@ import { useRouter } from "next/router";
 import "react-quill/dist/quill.snow.css";
 import { ButtonColor } from "@features/ui/button/button";
 import * as P from "@features/create-post/components/create-post.style";
-import { useQuery } from "react-query";
-import axios from "axios";
-import { SinglePostType } from "@features/single-post/types/single-post-type.types";
 import { ToastContainer, toast } from "react-toastify";
 import * as E from "@features/index";
 
-type EditProps = {
-  post: SinglePostType;
-};
-export function EditPost({ post }: EditProps) {
+export function EditPost({ post }: any) {
   const router = useRouter();
   const { id } = router.query;
 
-  const { data, isLoading, isError } = useQuery(
-    ["single post", id],
-    () => {
-      return axios(`http://localhost:3000/api/posts/${id}`) as any;
-    },
-    { initialData: { data: { post: post } } }
-  );
-  const [title, setTitle] = useState(data?.data?.post?.title);
-  const [desc, setDesc] = useState(data?.data?.post?.desc);
-  const [content, setContent] = useState(data?.data?.post?.content);
+  const [title, setTitle] = useState(() => post?.data?.title);
+  const [desc, setDesc] = useState(() => post?.data?.desc);
+  const [content, setContent] = useState(() => post?.data?.content);
   const [photo, setPhoto] = useState("");
   const CLOUD_NAME = "dr04ygceb";
   const UPLOAD_PRESET = "cathto-upload-image";
 
-  if (isLoading) return <E.Loader />;
-  if (isError) return <h2>Error occured. Refresh browser</h2>;
-
   const editPost = async (e: any) => {
     e.preventDefault();
 
-    if (!title || !desc || !content || !photo) {
+    if (!title || !desc || !content) {
       toast.error("All fields are required");
       return;
     }
@@ -49,6 +33,7 @@ export function EditPost({ post }: EditProps) {
 
       const res = await fetch(`http://localhost:3000/api/posts/${id}`, {
         method: "PUT",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },
@@ -65,9 +50,12 @@ export function EditPost({ post }: EditProps) {
       const post = await res.json();
       toast.success("Post edited successfully");
       toast.loading("You will be redirected to the post after a few seconds.");
+
       setTimeout(() => {
-        router.push(`/single-post/${post.data._id}`);
-      }, 3500);
+        router.push(
+          `/single-post/${post?.data?._id}?author=${post?.data?.username}&edited=true`
+        );
+      }, 3000);
     } catch (error) {
       console.log(error);
     }
