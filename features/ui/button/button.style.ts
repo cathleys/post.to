@@ -17,7 +17,7 @@ export const ButtonStyle = styled.button<{ color: ButtonColor }>`
           border: 1px solid #d0d5dd;
 
           &:hover,
-          &:focus {
+          &:active {
             background: rgba(236, 240, 241, 0.5);
             color: orange;
           }
@@ -28,7 +28,8 @@ export const ButtonStyle = styled.button<{ color: ButtonColor }>`
           background: #1d2939;
           border: 1px solid #1d2939;
 
-          &:focus {
+          &:hover,
+          &:active {
             background: white;
             color: #1d2939;
           }

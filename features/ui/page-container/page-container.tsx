@@ -13,6 +13,7 @@ export function PageContainer({ children }: PageContainerProps) {
       <Head>
         <title>Post.to</title>
         <meta property="og:title" content="Post.to" key="title" />
+        <link rel="icon" href="/postto.png" sizes="50x50" />
       </Head>
       <NavigationMenu />
       <main>{children}</main>
