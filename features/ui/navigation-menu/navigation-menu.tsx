@@ -5,13 +5,10 @@ import fetch from "isomorphic-unfetch";
 import Link from "next/link";
 import { Menu, MenuItem } from "@mui/material";
 import { Anchor, NavigationLink } from "./navigation-link";
-import { ButtonColor, ButtonUi } from "@features/ui/button";
-import { Buttons } from "@features/single-post/components/single-post.style";
-import Box from "@mui/material/Box";
-import Modal from "@mui/material/Modal";
 import * as N from "./navigation.style";
 import { UserContext } from "@features/ui/user-context";
 import { DarkModeToggle } from "../dark-mode-toggle";
+import { CustomModal } from "@features/index";
 
 const navLinks = [
   { text: "Home", href: Routes.home },
@@ -117,27 +114,13 @@ export function NavigationMenu() {
           </Menu>
         </N.DarkAndMenu>
       </N.NavBar>
-
-      <Modal open={logout} onClose={() => setLogout(false)}>
-        <Box sx={N.style}>
-          Are you sure you want to log out?
-          <br />
-          <br />
-          <br />
-          <Buttons>
-            <ButtonUi
-              text="Cancel"
-              color={ButtonColor.white}
-              onClick={() => setLogout(false)}
-            />
-            <ButtonUi
-              text="Log out"
-              color={ButtonColor.dark}
-              onClick={logOut}
-            />
-          </Buttons>
-        </Box>
-      </Modal>
+      <CustomModal
+        open={logout}
+        message="Are you sure you want to log out?"
+        text="Log out"
+        onClose={() => setLogout(false)}
+        confirm={logOut}
+      />
     </>
   );
 }

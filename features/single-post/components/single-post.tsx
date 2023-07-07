@@ -2,13 +2,12 @@ import React, { useContext, useState } from "react";
 import { useRouter } from "next/router";
 import { FaTrashAlt } from "react-icons/fa";
 import { AiFillEdit } from "react-icons/ai";
-import { ButtonUi, ButtonColor, UserContext } from "@features/ui";
-import Box from "@mui/material/Box";
-import Modal from "@mui/material/Modal";
+import { UserContext } from "@features/ui";
 import { Routes } from "@config/routes";
 import * as S from "./single-post.style";
 import { toast } from "react-toastify";
 import { SinglePostType } from "../types/single-post-type.types";
+import { CustomModal } from "@features/ui/custom-modal";
 
 type PostPropTypes = {
   post: SinglePostType;
@@ -79,32 +78,13 @@ export function SinglePost({ post }: PostPropTypes) {
         <S.Span>Recommended articles</S.Span>
         <S.ArtContainer></S.ArtContainer>
       </S.RecommendedContainer>
-
-      <Modal
+      <CustomModal
         open={open}
+        message="Are you sure you want to DELETE this post?"
+        text="Delete"
         onClose={() => setOpen(false)}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={S.style}>
-          Are you sure you want to <strong>DELETE</strong> this post?
-          <br />
-          <br />
-          <br />
-          <S.Buttons>
-            <ButtonUi
-              text="Cancel"
-              color={ButtonColor.white}
-              onClick={() => setOpen(false)}
-            />
-            <ButtonUi
-              text="Delete"
-              color={ButtonColor.dark}
-              onClick={deletePost}
-            />
-          </S.Buttons>
-        </Box>
-      </Modal>
+        confirm={deletePost}
+      />
     </>
   );
 }
