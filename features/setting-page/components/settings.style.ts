@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { RxAvatar } from "react-icons/rx";
 
 export const Container = styled.div`
   display: flex;
@@ -37,7 +36,7 @@ export const ImageStyle = styled.div`
     font-weight: 600;
     font-size: 0.875rem
     outline: none;
-    background: white;
+    
     border-radius: 0.5rem;
     padding: 0.75rem 0.875rem;
 
@@ -57,9 +56,14 @@ export const Input = styled.input`
     outline: 1px solid #777;
   }
 `;
-export const ImageIcon = styled(RxAvatar)`
-  height: 3.125rem;
-  width: 3.125rem;
+export const ImageIcon = styled.div``;
+
+export const Avatar = styled.img`
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  object-fit: cover;
+  height: 4rem;
+  width: 4rem;
 `;
 export const DeleteAccount = styled.span`
   color: #c20303;
