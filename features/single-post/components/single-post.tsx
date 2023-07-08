@@ -1,24 +1,39 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { FaTrashAlt } from "react-icons/fa";
 import { AiFillEdit } from "react-icons/ai";
-import { UserContext } from "@features/ui";
+import { CommentList, UserContext } from "@features/ui";
 import { Routes } from "@config/routes";
+import fetch from "isomorphic-unfetch";
 import * as S from "./single-post.style";
 import { toast } from "react-toastify";
 import { SinglePostType } from "../types/single-post-type.types";
 import { CustomModal } from "@features/ui/custom-modal";
-
+import Link from "next/link";
+import { UserData } from "@features/ui/sidebar-user-info/sidebar-user-info";
 type PostPropTypes = {
   post: SinglePostType;
 };
 
 export function SinglePost({ post }: PostPropTypes) {
-  const { title, content, imageUrl, createdAt, authorId } = post;
+  const { title, content, imageUrl, createdAt, authorId, updatedAt } = post;
   const { userInfo } = useContext(UserContext);
   const [open, setOpen] = useState(false);
   const router = useRouter();
   const { id } = router.query;
+  const [userData, setUserData] = useState<UserData | null>(null);
+  const [commentText, setCommentText] = useState("");
+
+  useEffect(() => {
+    fetch(`http://localhost:3000/api/users/${userInfo?.id}`).then(
+      (response) => {
+        response.json().then((pic) => {
+          setUserData(pic);
+        });
+      }
+    );
+  }, [userInfo?.id]);
+  const { profilePic } = userData?.data || {};
 
   const deletePost = async (e: any) => {
     e.preventDefault();
@@ -46,11 +61,16 @@ export function SinglePost({ post }: PostPropTypes) {
 
         <S.Publisher>
           <S.IconAuthorAndDate>
-            <S.Icon src={imageUrl} alt="" />
+            <S.Icon src={profilePic} alt="picture" />
 
             <S.AuthorandDate>
-              <S.Author>by @{userInfo?.username}</S.Author>
+              <Link href={`${Routes.home}?user=${userInfo?.username}`}>
+                <S.Author>by @{userInfo?.username}</S.Author>
+              </Link>
               <div>{new Date(createdAt).toDateString()}</div>
+              {createdAt !== updatedAt && (
+                <div>{new Date(updatedAt).toDateString()}</div>
+              )}
             </S.AuthorandDate>
           </S.IconAuthorAndDate>
           {userInfo?.id === authorId?._id && (
@@ -75,8 +95,11 @@ export function SinglePost({ post }: PostPropTypes) {
         ></S.Article>
       </S.Container>
       <S.RecommendedContainer>
-        <S.Span>Recommended articles</S.Span>
-        <S.ArtContainer></S.ArtContainer>
+        <CommentList
+          commentText={commentText}
+          iconSrc={profilePic}
+          setCommentText={(e: any) => setCommentText(e.target.value)}
+        />
       </S.RecommendedContainer>
       <CustomModal
         open={open}

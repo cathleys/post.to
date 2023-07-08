@@ -20,6 +20,7 @@ export const Label = styled.label`
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  width: 100%;
 `;
 
 export const Input = styled.input`

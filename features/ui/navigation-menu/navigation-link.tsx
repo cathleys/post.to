@@ -20,7 +20,9 @@ export const Anchor = styled.a`
 export function NavigationLink({ text, href, onClick }: MenuLinkProps) {
   return (
     <Link href={href} passHref>
-      <Anchor onClick={onClick}>{text}</Anchor>
+      <span>
+        <Anchor onClick={onClick}>{text}</Anchor>
+      </span>
     </Link>
   );
 }

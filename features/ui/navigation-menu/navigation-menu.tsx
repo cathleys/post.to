@@ -12,11 +12,12 @@ import { CustomModal } from "@features/index";
 
 const navLinks = [
   { text: "Home", href: Routes.home },
+  { text: "See All Posts", href: Routes.seePosts },
   { text: "Create Post", href: Routes.createPost },
-  { text: "Settings", href: Routes.settings },
 ];
 export function NavigationMenu() {
   const router = useRouter();
+
   const { userInfo, setUserInfo } = useContext(UserContext);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -97,6 +98,10 @@ export function NavigationMenu() {
                   {navLinks.map((link: any, index) => (
                     <NavigationLink key={index} {...link} />
                   ))}
+                  <NavigationLink
+                    href={`/settings-page/${userInfo.id}`}
+                    text="Settings"
+                  />
                   <NavigationLink
                     href={""}
                     text="Log out"

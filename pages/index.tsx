@@ -1,12 +1,15 @@
 import React, { useState } from "react";
+import { useQuery } from "react-query";
+import axios from "axios";
+import { Routes } from "@config/routes";
 import * as I from "@features/index";
 import * as A from "@features/ui/posts/post-article";
 import * as P from "@features/ui/posts/post.style";
-import { useQuery } from "react-query";
-import axios from "axios";
+import Link from "next/link";
 
 const Home = ({ posts }: any) => {
   const [articlesToShow, setArticlesToShow] = useState(7);
+
   const { data, isLoading, isError } = useQuery(
     "posts",
     async () => {
@@ -37,7 +40,9 @@ const Home = ({ posts }: any) => {
       <P.ArticleContainer>
         <P.HeaderandButton>
           <h3>Read articles</h3>
-          <I.ButtonUi text="View all" color={I.ButtonColor.white} />
+          <Link href={Routes.seePosts}>
+            <I.ButtonUi text="View all" color={I.ButtonColor.white} />
+          </Link>
         </P.HeaderandButton>
 
         {renderedArticles}

@@ -6,7 +6,7 @@ export const ArticleContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: #f2f4f7;
+
   gap: 1rem;
 `;
 export const HeaderandButton = styled.div`
@@ -21,7 +21,6 @@ export const Container = styled.div`
   flex-wrap: wrap;
   justify-content: space-between;
   width: 60vw;
-  background: white;
   border: 1px solid white;
   border-radius: 0.5rem;
   padding: 1.5rem 1.25rem 1.5rem 1.875rem;

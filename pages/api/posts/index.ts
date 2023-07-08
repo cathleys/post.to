@@ -18,9 +18,18 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
   if (req.method === "GET") {
     await db();
-    const post = await Post.find().sort({ createdAt: -1 }).limit(7);
-
-    res.status(200).json({ success: true, data: post });
+    const username = req.query.user;
+    try {
+      let posts;
+      if (username) {
+        posts = await Post.find({ username });
+      } else {
+        posts = await Post.find().sort({ createdAt: -1 }).limit(3);
+      }
+      res.status(200).json({ success: true, data: posts });
+    } catch (error) {
+      res.status(400).json({ error: "Invalid GET request." });
+    }
   } else if (req.method === "POST") {
     if ("token" in req.cookies) {
       const secret: Secret | undefined = process.env.JWT_SECRET || "";

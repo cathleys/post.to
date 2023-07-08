@@ -58,6 +58,7 @@ export const IconAuthorAndDate = styled.div`
 `;
 export const Icon = styled.img`
   border-radius: 50%;
+  object-fit: cover;
   height: 3.125rem;
   width: 3.125rem;
 `;
@@ -72,6 +73,10 @@ export const AuthorandDate = styled.div`
 `;
 export const Author = styled.div`
   font-weight: bold;
+  cursor: pointer;
+  &:hover {
+    color: orange;
+  }
 `;
 
 export const Anchor = styled.a`
@@ -106,9 +111,7 @@ export const Article = styled.div`
 export const RecommendedContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 2rem;
   padding: 5rem 6.25rem;
-  background: #f2f4f7;
 
   @media (max-width: 64em) {
     padding: 3.75rem 2rem;

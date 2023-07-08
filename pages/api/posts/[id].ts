@@ -6,7 +6,7 @@ import jwt, { Secret } from "jsonwebtoken";
 
 db();
 
-async function handlePost(req: NextApiRequest, res: NextApiResponse) {
+async function handler(req: NextApiRequest, res: NextApiResponse) {
   const {
     query: { id },
     method,
@@ -18,6 +18,7 @@ async function handlePost(req: NextApiRequest, res: NextApiResponse) {
         const post = await Post.findById(id).populate("authorId", [
           "profilePic",
           "username",
+          "bio",
         ]);
 
         if (!post) {
@@ -108,4 +109,4 @@ async function handlePost(req: NextApiRequest, res: NextApiResponse) {
   }
 }
 
-export default handlePost;
+export default handler;
