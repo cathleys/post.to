@@ -2,8 +2,10 @@ import { NextApiRequest, NextApiResponse } from "next";
 import User from "@models/user";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import db from "@utils/db";
 
 const login = async (req: NextApiRequest, res: NextApiResponse) => {
+  await db();
   const { username, password } = req.body;
 
   try {
