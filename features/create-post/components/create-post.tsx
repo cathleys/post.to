@@ -28,7 +28,7 @@ export function CreatePost() {
 
     try {
       const imageUrl = await uploadImage();
-      const res = await fetch("https://post-to.vercel.app/api/api/posts", {
+      const res = await fetch("https://post-to.vercel.app/api/posts", {
         method: "POST",
         credentials: "include",
         headers: {
