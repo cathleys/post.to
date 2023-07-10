@@ -5,7 +5,7 @@ export type SinglePostType = {
   content: string;
   imageUrl: string;
   username: string;
-  authorId: { _id: string };
+  authorId: { _id: string; username: string };
   createdAt: Date;
   updatedAt: Date;
 };

@@ -25,14 +25,14 @@ export function SinglePost({ post }: PostPropTypes) {
   const [commentText, setCommentText] = useState("");
 
   useEffect(() => {
-    fetch(`https://post-to.vercel.app/api/users/${userInfo?.id}`).then(
+    fetch(`https://post-to.vercel.app/api/users/${authorId?._id}`).then(
       (response) => {
         response.json().then((pic) => {
           setUserData(pic);
         });
       }
     );
-  }, [userInfo?.id]);
+  }, [authorId?._id]);
   const { profilePic } = userData?.data || {};
 
   const deletePost = async (e: any) => {
@@ -64,8 +64,8 @@ export function SinglePost({ post }: PostPropTypes) {
             <S.Icon src={profilePic} alt="picture" />
 
             <S.AuthorandDate>
-              <Link href={`${Routes.home}?user=${userInfo?.username}`}>
-                <S.Author>by @{userInfo?.username}</S.Author>
+              <Link href={`${Routes.home}?user=${authorId?.username}`}>
+                <S.Author>by @{authorId?.username}</S.Author>
               </Link>
               <div>{new Date(createdAt).toDateString()}</div>
             </S.AuthorandDate>
