@@ -6,7 +6,6 @@ import jwt, { Secret } from "jsonwebtoken";
 
 db();
 
-db();
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   const {
     query: { id },
