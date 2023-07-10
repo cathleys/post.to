@@ -34,7 +34,7 @@ const ListOfPostsPage = ({
 };
 
 export const getStaticProps = async () => {
-  const res = await fetch("http://localhost:3000/api/posts", {
+  const res = await fetch("https://post-to.vercel.app/api/posts", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

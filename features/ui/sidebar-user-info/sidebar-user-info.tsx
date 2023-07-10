@@ -16,7 +16,7 @@ export function SidebarUserInfo() {
   const { userInfo } = useContext(UserContext);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/api/users/${userInfo?.id}`).then(
+    fetch(`https://post-to.vercel.app/api/users/${userInfo?.id}`).then(
       (response) => {
         response.json().then((info) => {
           setUserData(info);

@@ -31,7 +31,7 @@ export function EditPost({ post }: any) {
         imageUrl = await uploadImage();
       }
 
-      const res = await fetch(`http://localhost:3000/api/posts/${id}`, {
+      const res = await fetch(`https://post-to.vercel.app/api/posts/${id}`, {
         method: "PUT",
         credentials: "include",
         headers: {

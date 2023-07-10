@@ -24,7 +24,7 @@ export function NavigationMenu() {
   const [logout, setLogout] = useState(false);
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/auth/user-profile", {
+    fetch("https://post-to.vercel.app/api/auth/user-profile", {
       credentials: "include",
     }).then((res) => {
       res.json().then((userInfo) => {
@@ -43,7 +43,7 @@ export function NavigationMenu() {
 
   const logOut = async () => {
     try {
-      await fetch("http://localhost:3000/api/auth/logout", {
+      await fetch("https://post-to.vercel.app/api/auth/logout", {
         method: "POST",
         credentials: "include",
       });

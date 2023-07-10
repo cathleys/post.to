@@ -25,7 +25,7 @@ export function SinglePost({ post }: PostPropTypes) {
   const [commentText, setCommentText] = useState("");
 
   useEffect(() => {
-    fetch(`http://localhost:3000/api/users/${userInfo?.id}`).then(
+    fetch(`https://post-to.vercel.app/api/users/${userInfo?.id}`).then(
       (response) => {
         response.json().then((pic) => {
           setUserData(pic);
@@ -38,7 +38,7 @@ export function SinglePost({ post }: PostPropTypes) {
   const deletePost = async (e: any) => {
     e.preventDefault();
     try {
-      await fetch(`http://localhost:3000/api/posts/${id}`, {
+      await fetch(`https://post-to.vercel.app/api/posts/${id}`, {
         method: "Delete",
         credentials: "include",
       });

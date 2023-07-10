@@ -22,7 +22,7 @@ export function Settings() {
   const CLOUD_NAME = "dr04ygceb";
   const UPLOAD_PRESET = "cathto-upload-image";
   useEffect(() => {
-    fetch(`http://localhost:3000/api/users/${userInfo?.id}`).then(
+    fetch(`https://post-to.vercel.app/api/users/${userInfo?.id}`).then(
       (response) => {
         response.json().then((pic) => {
           setUserData(pic);
@@ -39,7 +39,7 @@ export function Settings() {
       const profilePic = await uploadImage();
 
       const res = await fetch(
-        `http://localhost:3000/api/users/${userInfo?.id}`,
+        `https://post-to.vercel.app/api/users/${userInfo?.id}`,
         {
           method: "PUT",
           credentials: "include",
@@ -93,7 +93,7 @@ export function Settings() {
   const deleteUser = async (e: any) => {
     e.preventDefault();
     try {
-      await fetch(`http://localhost:3000/api/users/${userInfo?.id}`, {
+      await fetch(`https://post-to.vercel.app/api/users/${userInfo?.id}`, {
         method: "Delete",
         credentials: "include",
       });

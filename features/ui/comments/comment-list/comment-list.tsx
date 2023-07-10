@@ -23,7 +23,9 @@ export function CommentList({
   const { userInfo } = useContext(UserContext);
 
   const { isLoading, error, data } = useQuery("comments", async () => {
-    const { data } = await axios.get(`http://localhost:3000/api/comment/${id}`);
+    const { data } = await axios.get(
+      `https://post-to.vercel.app/api/comment/${id}`
+    );
 
     return data;
   });
@@ -44,7 +46,7 @@ export function CommentList({
     };
 
     try {
-      const res = await fetch(`http://localhost:3000/api/comment`, {
+      const res = await fetch(`https://post-to.vercel.app/api/comment`, {
         method: "POST",
         credentials: "include",
         headers: { "Content-Type": "application/json" },

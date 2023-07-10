@@ -3,7 +3,7 @@ import { SinglePost } from "@features/single-post";
 import { PageContainer } from "@features/ui";
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const res = await fetch("http://localhost:3000/api/posts");
+  const res = await fetch("https://post-to.vercel.app/api/posts");
 
   const data = await res.json();
 
@@ -22,7 +22,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async (context: any) => {
   const { params } = context;
-  const res = await fetch(`http://localhost:3000/api/posts/${params?.id}`);
+  const res = await fetch(`https://post-to.vercel.app/api/posts/${params?.id}`);
   const data = await res.json();
 
   return { props: { post: data } };

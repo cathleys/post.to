@@ -3,7 +3,7 @@ import { PageContainer } from "@features/ui";
 import { EditPost } from "@features/single-post";
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const res = await fetch("http://localhost:3000/api/posts");
+  const res = await fetch("https://post-to.vercel.app/api/posts");
 
   const data = await res.json();
 
@@ -21,11 +21,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 export const getStaticProps = async (context: any) => {
   const { params } = context;
-  const postRes = await fetch(`http://localhost:3000/api/posts/${params?.id}`);
+  const postRes = await fetch(
+    `https://post-to.vercel.app/api/posts/${params?.id}`
+  );
   const postData = await postRes.json();
 
   // Fetch additional data for pre-filling form fields (e.g., title, desc, content)
-  const dataRes = await fetch("http://localhost:3000/api/posts");
+  const dataRes = await fetch("https://post-to.vercel.app/api/posts");
   const data = await dataRes.json();
   return {
     props: {

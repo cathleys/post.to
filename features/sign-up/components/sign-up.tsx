@@ -18,7 +18,7 @@ export function SignUp() {
   const signUp = async (e: any) => {
     e.preventDefault();
     try {
-      await fetch("http://localhost:3000/api/auth/sign-up", {
+      await fetch("https://post-to.vercel.app/api/auth/sign-up", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
@@ -45,7 +45,7 @@ export function SignUp() {
 
     try {
       const res = await fetch(
-        "http://localhost:3000/api/auth/demo-user-login",
+        "https://post-to.vercel.app/api/auth/demo-user-login",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

@@ -13,7 +13,7 @@ const Home = ({ posts }: any) => {
   const { data, isLoading, isError } = useQuery(
     "posts",
     async () => {
-      return axios("http://localhost:3000/api/posts") as any;
+      return axios("https://post-to.vercel.app/api/posts") as any;
     },
     {
       initialData: { data: { posts: posts } },
@@ -59,7 +59,7 @@ const Home = ({ posts }: any) => {
 };
 
 export const getStaticProps = async () => {
-  const res = await fetch("http://localhost:3000/api/posts", {
+  const res = await fetch("https://post-to.vercel.app/api/posts", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
