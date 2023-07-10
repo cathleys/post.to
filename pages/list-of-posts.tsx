@@ -1,18 +1,28 @@
 import React, { useState } from "react";
-import { InferGetStaticPropsType } from "next";
 import * as I from "@features/index";
-import * as P from "@features/ui/posts/post-article";
+import * as A from "@features/ui/posts/post-article";
 import { ArticleContainer } from "@features/ui/posts/post.style";
+import axios from "axios";
+import { useQuery } from "react-query";
 
-const ListOfPostsPage = ({
-  posts,
-}: InferGetStaticPropsType<typeof getStaticProps>) => {
+const ListOfPostsPage = () => {
   const [articlesToShow, setArticlesToShow] = useState(7);
 
-  const renderedArticles = posts?.data
+  const articles = useQuery("list of posts", async () => {
+    return axios("https://post-to.vercel.app/api/posts");
+  });
+  const blogPosts = articles?.data?.data?.data || {};
+
+  if (articles.isLoading) {
+    return <I.Loader />;
+  }
+  if (articles.isError) {
+    return <h2>Something went wrong, refresh browser.</h2>;
+  }
+  const renderedArticles = blogPosts
     ?.slice(0, articlesToShow)
-    .map((post: P.ArticleProps) => {
-      return <P.PostArticle key={post._id} {...post} />;
+    .map((post: A.ArticleProps) => {
+      return <A.PostArticle key={post._id} {...post} />;
     });
   const loadMore = () => {
     setArticlesToShow(articlesToShow + 10);
@@ -21,7 +31,7 @@ const ListOfPostsPage = ({
     <I.PageContainer>
       <ArticleContainer>
         {renderedArticles}
-        {posts?.data?.length > articlesToShow && (
+        {blogPosts?.length > articlesToShow && (
           <I.ButtonUi
             onClick={loadMore}
             text="Load More"
@@ -31,18 +41,6 @@ const ListOfPostsPage = ({
       </ArticleContainer>
     </I.PageContainer>
   );
-};
-
-export const getStaticProps = async () => {
-  const res = await fetch("https://post-to.vercel.app/api/posts", {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      "User-Agent": "*",
-    },
-  });
-  const data = await res.json();
-  return { props: { posts: data } };
 };
 
 export default ListOfPostsPage;
