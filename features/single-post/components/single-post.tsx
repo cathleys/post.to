@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import { useRouter } from "next/router";
 import { FaTrashAlt } from "react-icons/fa";
 import { AiFillEdit } from "react-icons/ai";
@@ -10,7 +10,7 @@ import { toast } from "react-toastify";
 import { SinglePostType } from "../types/single-post-type.types";
 import { CustomModal } from "@features/ui/custom-modal";
 import Link from "next/link";
-import { UserData } from "@features/ui/sidebar-user-info/sidebar-user-info";
+
 type PostPropTypes = {
   post: SinglePostType;
 };
@@ -21,19 +21,8 @@ export function SinglePost({ post }: PostPropTypes) {
   const [open, setOpen] = useState(false);
   const router = useRouter();
   const { id } = router.query;
-  const [userData, setUserData] = useState<UserData | null>(null);
-  const [commentText, setCommentText] = useState("");
 
-  useEffect(() => {
-    fetch(`https://post-to.vercel.app/api/users/${authorId?._id}`).then(
-      (response) => {
-        response.json().then((pic) => {
-          setUserData(pic);
-        });
-      }
-    );
-  }, [authorId?._id]);
-  const { profilePic } = userData?.data || {};
+  const [commentText, setCommentText] = useState("");
 
   const deletePost = async (e: any) => {
     e.preventDefault();
@@ -61,7 +50,7 @@ export function SinglePost({ post }: PostPropTypes) {
 
         <S.Publisher>
           <S.IconAuthorAndDate>
-            <S.Icon src={profilePic} alt="picture" />
+            <S.Icon src={authorId?.profilePic} alt="picture" />
 
             <S.AuthorandDate>
               <Link href={`${Routes.home}?user=${authorId?.username}`}>
@@ -100,7 +89,6 @@ export function SinglePost({ post }: PostPropTypes) {
       <S.RecommendedContainer>
         <CommentList
           commentText={commentText}
-          iconSrc={profilePic}
           setCommentText={(e: any) => setCommentText(e.target.value)}
         />
       </S.RecommendedContainer>

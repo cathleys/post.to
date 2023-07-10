@@ -8,21 +8,16 @@ import axios from "axios";
 
 type CommentListProps = {
   commentText: string;
-  iconSrc: string | undefined;
   // eslint-disable-next-line no-unused-vars
   setCommentText: (e: any) => void;
 };
 
-export function CommentList({
-  commentText,
-  iconSrc,
-  setCommentText,
-}: CommentListProps) {
+export function CommentList({ commentText, setCommentText }: CommentListProps) {
   const router = useRouter();
   const { id } = router.query;
   const { userInfo } = useContext(UserContext);
 
-  const { isLoading, error, data } = useQuery("comments", async () => {
+  const getComments = useQuery("comments", async () => {
     const { data } = await axios.get(
       `https://post-to.vercel.app/api/comment/${id}`
     );
@@ -30,12 +25,12 @@ export function CommentList({
     return data;
   });
 
-  if (isLoading) return <Loader />;
+  if (getComments?.isLoading) return <Loader />;
 
-  if (error) {
+  if (getComments?.error) {
     return <h2>Error occured. Refresh browser.</h2>;
   }
-
+  const comments = getComments?.data?.data || {};
   const createComment = async (e: any) => {
     e.preventDefault();
 
@@ -64,8 +59,6 @@ export function CommentList({
       <C.Section>
         <h1>Top Comments</h1>
         <C.Comment>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={iconSrc} alt="profile pic" />
           <C.TextAreaComment
             value={commentText}
             placeholder="leave a comment..."
@@ -75,8 +68,8 @@ export function CommentList({
         </C.Comment>
       </C.Section>
       <C.ArrayComments>
-        {data?.data?.length > 0 ? (
-          data?.data?.map((comment: any) => (
+        {comments?.length > 0 ? (
+          comments?.map((comment: any) => (
             <Comment key={comment._id} {...comment} />
           ))
         ) : (
