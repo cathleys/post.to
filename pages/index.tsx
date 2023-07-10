@@ -6,6 +6,7 @@ import * as I from "@features/index";
 import * as A from "@features/ui/posts/post-article";
 import * as P from "@features/ui/posts/post.style";
 import Link from "next/link";
+import { getPosts } from "./api/posts";
 
 const Home = ({ posts }: any) => {
   const [articlesToShow, setArticlesToShow] = useState(7);
@@ -59,14 +60,8 @@ const Home = ({ posts }: any) => {
 };
 
 export const getStaticProps = async () => {
-  const res = await fetch("https://post-to.vercel.app/api/posts", {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      "User-Agent": "*",
-    },
-  });
-  const data = await res.json();
+  const data = await getPosts();
+
   return { props: { posts: data } };
 };
 export default Home;

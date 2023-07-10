@@ -5,6 +5,14 @@ import User from "@models/user";
 import db from "@utils/db";
 import NextCors from "nextjs-cors";
 import jwt, { Secret } from "jsonwebtoken";
+
+export async function getPosts() {
+  await db();
+
+  const data = await Post.find().sort({ createdAt: -1 }).limit(3);
+
+  return JSON.parse(JSON.stringify(data));
+}
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   await NextCors(req, res, {
     methods: ["GET", "POST"],
@@ -17,15 +25,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   });
 
   if (req.method === "GET") {
-    await db();
-    const username = req.query.user;
     try {
-      let posts;
-      if (username) {
-        posts = await Post.find({ username });
-      } else {
-        posts = await Post.find().sort({ createdAt: -1 }).limit(3);
-      }
+      const posts = await getPosts();
       res.status(200).json({ success: true, data: posts });
     } catch (error) {
       res.status(400).json({ error: "Invalid GET request." });
