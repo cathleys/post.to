@@ -10,10 +10,6 @@ export const Theme = styled.div`
     a {
       color: #1d2939;
     }
-
-    input {
-      transition: 1s all ease;
-    }
   }
 
   &.dark {
@@ -24,8 +20,8 @@ export const Theme = styled.div`
       color: #bbb;
     }
 
-    input {
-      transition: 1s all ease;
+    input,
+    textarea {
       background-color: #111;
       border: 1px solid #ccc;
       color: white;
