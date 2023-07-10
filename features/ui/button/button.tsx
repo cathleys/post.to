@@ -1,5 +1,4 @@
-import Link from "next/link";
-import { Anchor, ButtonStyle } from "./button.style";
+import { ButtonStyle } from "./button.style";
 
 export enum ButtonColor {
   // eslint-disable-next-line no-unused-vars
@@ -9,16 +8,20 @@ export enum ButtonColor {
 }
 type ButtonProps = {
   text: string;
-  href: string;
-  color: ButtonColor;
+  color?: ButtonColor;
+  type?: string;
+  // eslint-disable-next-line no-unused-vars
+  onClick?: (e: any) => void;
 };
 
-export function ButtonUi({ text, href, color }: ButtonProps) {
+export function ButtonUi({
+  text,
+  color = ButtonColor.white,
+  onClick,
+}: ButtonProps) {
   return (
-    <Link href={href} passHref>
-      <Anchor as={ButtonStyle} color={color}>
-        {text}
-      </Anchor>
-    </Link>
+    <ButtonStyle color={color} onClick={onClick}>
+      {text}
+    </ButtonStyle>
   );
 }

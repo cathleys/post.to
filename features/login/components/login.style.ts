@@ -20,6 +20,7 @@ export const Label = styled.label`
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  width: 100%;
 `;
 
 export const Input = styled.input`
@@ -49,7 +50,17 @@ export const LoginButton = styled.button`
   color: white;
   width: 100%;
 
-  &:hover {
+  &:hover,
+  &:active {
     background: #0063e4;
+    box-shadow: 0px 18px 30px -20px rgba(0, 0, 0, 0.75);
   }
+`;
+export const Hint = styled.span`
+  font-size: 14px;
+  color: #707070;
+`;
+export const Bold = styled.strong`
+  font-size: 14px;
+  color: #242424;
 `;

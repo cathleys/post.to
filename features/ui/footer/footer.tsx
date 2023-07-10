@@ -1,8 +1,9 @@
 import { FooterContainer } from "./footer.style";
 
 export function Footer() {
-  const getYear = () => {
-    return new Date().getFullYear();
-  };
-  return <FooterContainer>Copyright © {getYear()} Cath.to</FooterContainer>;
+  return (
+    <FooterContainer>
+      Copyright © {new Date().getFullYear()} Post.to
+    </FooterContainer>
+  );
 }

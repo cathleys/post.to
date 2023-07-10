@@ -17,7 +17,6 @@ export const White: Story = {
   args: {
     color: ButtonColor.white,
     text: "Button",
-    href: "/",
   },
 };
 
@@ -25,6 +24,5 @@ export const Dark: Story = {
   args: {
     color: ButtonColor.dark,
     text: "Button",
-    href: "/",
   },
 };

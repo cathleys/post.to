@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { RxAvatar } from "react-icons/rx";
 
 export const SideBar = styled.div`
   flex: 3;
@@ -22,11 +21,16 @@ export const IconandName = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.2rem;
 `;
-export const Icon = styled(RxAvatar)`
+export const Icon = styled.img`
+  object-fit: cover;
+  border-radius: 50%;
   height: 3.125rem;
   width: 3.125rem;
+`;
+export const Bio = styled.h5`
+  margin: 0;
 `;
 export const Joined = styled.h5`
   margin: 0;

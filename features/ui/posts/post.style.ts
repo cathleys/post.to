@@ -6,49 +6,45 @@ export const ArticleContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: #f2f4f7;
-  gap: 0.4rem;
+
+  gap: 1rem;
 `;
 export const HeaderandButton = styled.div`
   display: flex;
   flex-direction: row;
-  width: 65vw;
+  width: 60vw;
   justify-content: space-between;
   margin-bottom: 0.625rem;
 `;
 export const Container = styled.div`
   display: flex;
   flex-wrap: wrap;
-  width: auto;
-  background: white;
+  justify-content: space-between;
+  width: 60vw;
   border: 1px solid white;
   border-radius: 0.5rem;
   padding: 1.5rem 1.25rem 1.5rem 1.875rem;
   box-shadow: 0px 21px 43px -26px rgba(150, 145, 150, 1);
 
   &:hover {
-    border: 1px solid #667085;
+    border: 1.5px solid #667085;
   }
 
   @media (max-width: 64em) {
-    margin: 1rem;
-    padding: 1.5rem 1rem;
+    margin: auto;
+    gap: 1rem;
   }
 `;
 export const Wrapper = styled.div`
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
+  justify-content: space-between;
   align-items: flex-start;
-  padding-right: 1.25rem;
-  cursor: pointer;
+  padding: auto;
 
   @media (max-width: 64em) {
-    padding: 0;
-  }
-
-  &:hover,
-  &:focus {
-    color: blue;
+    gap: 1rem;
   }
 `;
 export const Date = styled.p`
@@ -57,26 +53,37 @@ export const Date = styled.p`
   margin: 0;
   color: #667085;
 `;
-export const Title = styled.h2`
-  font-weight: 100;
+export const Title = styled.h3`
   font-size: 1.625rem;
-  margin: 1.875rem 0 0 0;
-
-  @media (max-width: 64em) {
-    padding-bottom: 1rem;
-  }
+  margin: 0;
 `;
 export const Sentence = styled.p`
   margin: 0;
   color: #475467;
-  @media (max-width: 64em) {
-    display: none;
-  }
 `;
 
 export const TitleandSentence = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.625rem;
-  max-width: 38.125rem;
+  max-width: 30rem;
+  white-space: wrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+export const PostImage = styled.img`
+  width: 15rem;
+  height: 10rem;
+  object-fit: cover;
+  border-radius: 0.5rem;
+`;
+
+export const ReadMore = styled.button`
+  outline: none;
+  background: none;
+  border: none;
+  &:hover,
+  &:focus {
+    color: orange;
+  }
 `;
