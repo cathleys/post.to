@@ -8,7 +8,7 @@ import { Anchor, NavigationLink } from "./navigation-link";
 import * as N from "./navigation.style";
 import { UserContext } from "@features/ui/user-context";
 import { DarkModeToggle } from "../dark-mode-toggle";
-import { CustomModal } from "@features/index";
+import { ButtonColor, ButtonUi, CustomModal } from "@features/index";
 
 const navLinks = [
   { text: "Home", href: Routes.home },
@@ -102,8 +102,8 @@ export function NavigationMenu() {
                     href={`/settings-page/${userInfo.id}`}
                     text="Settings"
                   />
-                  <NavigationLink
-                    href={""}
+                  <ButtonUi
+                    color={ButtonColor.white}
                     text="Log out"
                     onClick={() => setLogout(true)}
                   />

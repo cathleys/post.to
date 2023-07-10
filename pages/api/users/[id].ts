@@ -57,8 +57,25 @@ async function handleUser(req: NextApiRequest, res: NextApiResponse) {
                 const salt = await bcrypt.genSalt(10);
                 req.body.password = await bcrypt.hash(req.body.password, salt);
               }
+              const { bio, username, password, profilePic } = req.body;
 
-              await updateUser.update(req.body);
+              if (bio) {
+                updateUser.bio = bio;
+              }
+
+              if (username) {
+                updateUser.username = username;
+              }
+
+              if (password) {
+                updateUser.password = password;
+              }
+
+              if (profilePic) {
+                updateUser.profilePic = profilePic;
+              }
+
+              await updateUser.save();
 
               res.status(200).json({ success: true, data: updateUser });
             }

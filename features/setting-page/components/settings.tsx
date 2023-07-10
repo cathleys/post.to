@@ -58,7 +58,7 @@ export function Settings() {
         throw new Error("Error occured");
       }
       await res.json();
-      router.push(Routes.settings);
+      router.push(Routes.home);
     } catch (error) {
       console.log(error);
     }

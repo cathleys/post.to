@@ -56,3 +56,11 @@ export const LoginButton = styled.button`
     box-shadow: 0px 18px 30px -20px rgba(0, 0, 0, 0.75);
   }
 `;
+export const Hint = styled.span`
+  font-size: 14px;
+  color: #707070;
+`;
+export const Bold = styled.strong`
+  font-size: 14px;
+  color: #242424;
+`;
