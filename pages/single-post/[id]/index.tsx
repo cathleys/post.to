@@ -2,9 +2,10 @@ import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
 import { SinglePost } from "@features/single-post";
 import { PageContainer } from "@features/ui";
 import { getPost } from "pages/api/posts/[id]";
+import { getPosts } from "pages/api/posts";
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const res = await fetch("https://post-to.vercel.app/api/posts");
+  const res = await getPosts();
 
   const data = await res.json();
 

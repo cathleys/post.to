@@ -2,9 +2,10 @@ import { GetStaticPaths, InferGetStaticPropsType } from "next";
 import { PageContainer } from "@features/ui";
 import { EditPost } from "@features/single-post";
 import { getPost } from "pages/api/posts/[id]";
+import { getPosts } from "pages/api/posts";
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const res = await fetch("https://post-to.vercel.app/api/posts");
+  const res = await getPosts();
   if (!res.ok) {
     console.error("Error getting static paths response props");
   }
