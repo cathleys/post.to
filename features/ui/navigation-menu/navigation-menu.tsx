@@ -95,6 +95,7 @@ export function NavigationMenu() {
             >
               {userInfo?.username && (
                 <>
+                  <span>Hi {userInfo?.username}!</span>
                   {navLinks.map((link: any, index) => (
                     <NavigationLink key={index} {...link} />
                   ))}
