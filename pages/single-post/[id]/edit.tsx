@@ -38,7 +38,7 @@ export const getStaticProps = async (context: any) => {
   const data = await dataRes.json();
   return {
     props: {
-      post: JSON.parse(JSON.stringify(postData)),
+      post: JSON.stringify(postData),
       data: data?.data || [], // Pass the additional data to the component
     },
   };
