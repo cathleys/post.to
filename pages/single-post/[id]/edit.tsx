@@ -1,54 +1,31 @@
-import { GetStaticPaths, InferGetStaticPropsType } from "next";
-import { PageContainer } from "@features/ui";
 import { EditPost } from "@features/single-post";
-import { getPost } from "pages/api/posts/[id]";
-import { getPosts } from "pages/api/posts";
+import { Loader, PageContainer } from "@features/ui";
+import axios from "axios";
+import { useQuery } from "react-query";
+import { useRouter } from "next/router";
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const res = await getPosts();
-  if (!res.ok) {
-    console.error("Error getting static paths response props");
-  }
-  const data = await res.json();
-
-  const paths = data?.data?.map((post: { _id: string }) => {
-    return {
-      params: {
-        id: `${post?._id}`,
-      },
-    };
+const EditPage = () => {
+  const router = useRouter();
+  const { id } = router.query;
+  const editPost = useQuery(["post", id], async () => {
+    return axios(`https://post-to.vercel.app/api/posts/${id}`);
   });
-  return {
-    paths,
-    fallback: false,
-  };
-};
-export const getStaticProps = async (context: any) => {
-  const params = context.params!;
-  const res = await getPost(params.id);
-  if (!res.ok) {
-    console.error("Error getting res props");
-  }
-  const postData = await res.json();
+  const getPost = useQuery("post", async () => {
+    return axios(`https://post-to.vercel.app/api/posts`);
+  });
+  const post = editPost?.data?.data.data || {};
+  const data = getPost?.data?.data?.data || {};
 
-  // Fetch additional data for pre-filling form fields (e.g., title, desc, content)
-  const dataRes = await fetch("https://post-to.vercel.app/api/posts");
-  if (!dataRes.ok) {
-    console.error("Error getting static properties");
+  if (editPost.isLoading) {
+    return <Loader />;
   }
-  const data = await dataRes.json();
-  return {
-    props: {
-      post: JSON.parse(JSON.stringify(postData)),
-      data: data?.data || [], // Pass the additional data to the component
-    },
-  };
-};
-
-const EditPage = ({ post }: InferGetStaticPropsType<typeof getStaticProps>) => {
+  if (editPost.isError) {
+    return <h2>Something went wrong, refresh browser.</h2>;
+  }
   return (
     <PageContainer>
-      <EditPost post={post} />
+      {" "}
+      <EditPost post={post} data={data} />{" "}
     </PageContainer>
   );
 };

@@ -68,13 +68,16 @@ export function SinglePost({ post }: PostPropTypes) {
                 <S.Author>by @{userInfo?.username}</S.Author>
               </Link>
               <div>{new Date(createdAt).toDateString()}</div>
-              {createdAt !== updatedAt && (
-                <div>{new Date(updatedAt).toDateString()}</div>
-              )}
             </S.AuthorandDate>
           </S.IconAuthorAndDate>
           {userInfo?.id === authorId?._id && (
             <S.Edit>
+              {createdAt !== updatedAt && (
+                <div>
+                  <strong>Edited:</strong> {new Date(updatedAt).toDateString()}
+                </div>
+              )}
+
               <S.Anchor href={`/single-post/${id}/edit`}>
                 <AiFillEdit size={24} />
               </S.Anchor>

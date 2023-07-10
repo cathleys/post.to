@@ -10,9 +10,9 @@ export function EditPost({ post }: any) {
   const router = useRouter();
   const { id } = router.query;
 
-  const [title, setTitle] = useState(() => post?.data?.title);
-  const [desc, setDesc] = useState(() => post?.data?.desc);
-  const [content, setContent] = useState(() => post?.data?.content);
+  const [title, setTitle] = useState(() => post?.title);
+  const [desc, setDesc] = useState(() => post?.desc);
+  const [content, setContent] = useState(() => post?.content);
   const [photo, setPhoto] = useState("");
   const CLOUD_NAME = "dr04ygceb";
   const UPLOAD_PRESET = "cathto-upload-image";
