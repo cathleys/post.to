@@ -15,7 +15,7 @@ export function Login() {
     e.preventDefault();
 
     try {
-      const res = await fetch("https://post-to.vercel.app/api/api/auth/login", {
+      const res = await fetch("https://post-to.vercel.app/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
