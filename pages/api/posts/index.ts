@@ -25,7 +25,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       if (username) {
         posts = await Post.find({ username });
       } else {
-        posts = await Post.find().sort({ createdAt: -1 }).limit(3);
+        posts = await Post.find().sort({ createdAt: -1 });
       }
       res.status(200).json({ success: true, data: posts });
     } catch (error) {
