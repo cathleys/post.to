@@ -26,7 +26,7 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
   const params = context.params!;
   const data = await getPost(params.id);
 
-  return { props: { post: JSON.stringify(data) } };
+  return { props: { post: JSON.parse(JSON.stringify(data)) } };
 };
 
 const SinglePostPage = ({
