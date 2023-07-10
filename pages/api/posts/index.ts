@@ -6,13 +6,6 @@ import db from "@utils/db";
 import NextCors from "nextjs-cors";
 import jwt, { Secret } from "jsonwebtoken";
 
-export async function getPosts() {
-  await db();
-
-  const data = await Post.find().sort({ createdAt: -1 }).limit(3);
-
-  return JSON.parse(JSON.stringify(data));
-}
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   await NextCors(req, res, {
     methods: ["GET", "POST"],
@@ -25,13 +18,21 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   });
 
   if (req.method === "GET") {
+    await db();
+    const username = req.query.user;
     try {
-      const posts = await getPosts();
+      let posts;
+      if (username) {
+        posts = await Post.find({ username });
+      } else {
+        posts = await Post.find().sort({ createdAt: -1 }).limit(3);
+      }
       res.status(200).json({ success: true, data: posts });
     } catch (error) {
       res.status(400).json({ error: "Invalid GET request." });
     }
   } else if (req.method === "POST") {
+    await db();
     if ("token" in req.cookies) {
       const secret: Secret | undefined = process.env.JWT_SECRET || "";
       const { token } = req.cookies;

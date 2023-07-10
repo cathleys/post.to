@@ -4,16 +4,7 @@ import Post from "@models/post";
 
 import jwt, { Secret } from "jsonwebtoken";
 
-export async function getPost(id: string) {
-  await db();
-  const data = await Post.findById(id).populate("authorId", [
-    "profilePic",
-    "username",
-    "bio",
-  ]);
-
-  return data;
-}
+db();
 
 db();
 async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -25,7 +16,11 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
   switch (method) {
     case "GET":
       try {
-        const post = await getPost(id as string);
+        const post = await Post.findById(id).populate("authorId", [
+          "profilePic",
+          "username",
+          "bio",
+        ]);
         if (!post) {
           return res
             .status(400)
