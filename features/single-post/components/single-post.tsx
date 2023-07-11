@@ -7,6 +7,7 @@ import { Routes } from "@config/routes";
 import fetch from "isomorphic-unfetch";
 import * as S from "./single-post.style";
 import { toast } from "react-toastify";
+import { format } from "timeago.js";
 import { SinglePostType } from "../types/single-post-type.types";
 import { CustomModal } from "@features/ui/custom-modal";
 import Link from "next/link";
@@ -63,7 +64,7 @@ export function SinglePost({ post }: PostPropTypes) {
             <S.Edit>
               {createdAt !== updatedAt && (
                 <div>
-                  <strong>Edited:</strong> {new Date(updatedAt).toDateString()}
+                  <strong>Edited:</strong> {format(updatedAt)}
                 </div>
               )}
 
