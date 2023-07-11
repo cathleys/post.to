@@ -10,7 +10,6 @@ import { toast } from "react-toastify";
 import { format } from "timeago.js";
 import { SinglePostType } from "../types/single-post-type.types";
 import { CustomModal } from "@features/ui/custom-modal";
-import Link from "next/link";
 
 type PostPropTypes = {
   post: SinglePostType;
@@ -54,20 +53,18 @@ export function SinglePost({ post }: PostPropTypes) {
             <S.Icon src={authorId?.profilePic} alt="picture" />
 
             <S.AuthorandDate>
-              <Link href={`${Routes.home}?user=${authorId?.username}`}>
-                <S.Author>by @{authorId?.username}</S.Author>
-              </Link>
+              <S.Author>by @{authorId?.username}</S.Author>
+
               <div>{new Date(createdAt).toDateString()}</div>
+              {createdAt !== updatedAt && (
+                <div>
+                  <strong>Updated</strong> {format(updatedAt)}
+                </div>
+              )}
             </S.AuthorandDate>
           </S.IconAuthorAndDate>
           {userInfo?.id === authorId?._id && (
             <S.Edit>
-              {createdAt !== updatedAt && (
-                <div>
-                  <strong>Edited:</strong> {format(updatedAt)}
-                </div>
-              )}
-
               <S.Anchor href={`/single-post/${id}/edit`}>
                 <AiFillEdit size={24} />
               </S.Anchor>
