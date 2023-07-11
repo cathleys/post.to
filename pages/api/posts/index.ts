@@ -19,7 +19,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
   if (req.method === "GET") {
     await db();
-    const username = req.query.user;
+    const { user: username } = req.query;
     try {
       let posts;
       if (username) {
