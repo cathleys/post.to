@@ -68,7 +68,6 @@ export function NavigationMenu() {
           </Link>
         </N.Logo>
         <N.DarkAndMenu>
-          <span>Hi {userInfo?.username}!</span>
           <DarkModeToggle />
           <N.MenuButton
             id="basic-button"
@@ -77,10 +76,7 @@ export function NavigationMenu() {
             aria-expanded={open ? "true" : undefined}
             onClick={handleClick}
           >
-            <N.MenuIcon
-              src={userInfo ? userInfo?.profilePic : "/icons/menu-icon.svg"}
-              alt="menu"
-            />
+            <N.MenuIcon src="/icons/menu-icon.svg" alt="menu" />
           </N.MenuButton>
           <Menu
             id="basic-menu"
@@ -99,6 +95,7 @@ export function NavigationMenu() {
             >
               {userInfo?.username && (
                 <>
+                  <span>Hi {userInfo?.username}!</span>
                   {navLinks.map((link: any, index) => (
                     <NavigationLink key={index} {...link} />
                   ))}
