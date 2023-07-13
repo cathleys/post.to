@@ -8,7 +8,7 @@ import * as P from "@features/ui/posts/post.style";
 import Link from "next/link";
 
 const Home = () => {
-  const [articlesToShow, setArticlesToShow] = useState(7);
+  const [articlesToShow, setArticlesToShow] = useState(5);
 
   const articles = useQuery("posts", async () => {
     return axios("https://post-to.vercel.app/api/posts");
