@@ -56,22 +56,24 @@ export function SinglePost({ post }: PostPropTypes) {
               <S.Author>by @{authorId?.username}</S.Author>
 
               <div>{new Date(createdAt).toDateString()}</div>
-              {createdAt !== updatedAt && (
-                <div>
-                  <strong>Updated</strong> {format(updatedAt)}
-                </div>
-              )}
             </S.AuthorandDate>
           </S.IconAuthorAndDate>
-          {userInfo?.id === authorId?._id && (
-            <S.Edit>
-              <S.Anchor href={`/single-post/${id}/edit`}>
-                <AiFillEdit size={24} />
-              </S.Anchor>
+          <S.Edit>
+            {createdAt !== updatedAt && (
+              <div>
+                <strong>Updated</strong> {format(updatedAt)}
+              </div>
+            )}
+            {userInfo?.id === authorId?._id && (
+              <>
+                <S.Anchor href={`/single-post/${id}/edit`}>
+                  <AiFillEdit size={24} />
+                </S.Anchor>
 
-              <FaTrashAlt onClick={() => setOpen(true)} size={24} />
-            </S.Edit>
-          )}
+                <FaTrashAlt onClick={() => setOpen(true)} size={24} />
+              </>
+            )}
+          </S.Edit>
         </S.Publisher>
         <br />
         <br />
