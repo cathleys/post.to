@@ -19,14 +19,10 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
   if (req.method === "GET") {
     await db();
-    const { user: username } = req.query;
+
     try {
-      let posts;
-      if (username) {
-        posts = await Post.find({ username });
-      } else {
-        posts = await Post.find().sort({ createdAt: -1 });
-      }
+      const posts = await Post.find().sort({ createdAt: -1 });
+
       res.status(200).json({ success: true, data: posts });
     } catch (error) {
       res.status(400).json({ error: "Invalid GET request." });
