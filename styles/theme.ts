@@ -13,7 +13,7 @@ export const Theme = styled.div`
   }
 
   &.dark {
-    background-color: #111;
+    background-color: #1a202c;
     color: #bbb;
 
     a {
