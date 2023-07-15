@@ -6,7 +6,7 @@ import { CommentList, UserContext } from "@features/ui";
 import { Routes } from "@config/routes";
 import fetch from "isomorphic-unfetch";
 import * as S from "./single-post.style";
-import { toast } from "react-toastify";
+
 import { format } from "timeago.js";
 import { SinglePostType } from "../types/single-post-type.types";
 import { CustomModal } from "@features/ui/custom-modal";
@@ -32,10 +32,7 @@ export function SinglePost({ post }: PostPropTypes) {
         credentials: "include",
       });
 
-      toast.success("Post has been deleted");
-      setTimeout(() => {
-        router.push(`${Routes.home}?post has been deleted`);
-      }, 2500);
+      router.push(`${Routes.home}?post has been deleted`);
     } catch (error) {
       console.log(error);
     }

@@ -15,17 +15,18 @@ export function CreatePost() {
   const [desc, setDesc] = useState("");
   const [content, setContent] = useState("");
   const [photo, setPhoto] = useState<Blob | null>(null);
-
+  const [isSaving, setSaving] = useState(false);
   const CLOUD_NAME = "dr04ygceb";
   const UPLOAD_PRESET = "cathto-upload-image";
 
   const createPost = async (e: any) => {
     e.preventDefault();
+
     if (!photo || !title || !desc || !content) {
       toast.error("All fields are required");
       return;
     }
-
+    setSaving(!isSaving);
     try {
       const imageUrl = await uploadImage();
       const res = await fetch("https://post-to.vercel.app/api/posts", {
@@ -46,12 +47,12 @@ export function CreatePost() {
       }
       const post = await res.json();
 
-      toast.success("Post created successfully");
       toast.loading("You'll be redirected to the post after a few seconds");
 
       router.push(
         `/single-post/${post?.data?._id}?author=${userInfo?.username}`
       );
+      toast.success("Post created successfully");
     } catch (error) {
       console.log(error);
     }
@@ -124,7 +125,7 @@ export function CreatePost() {
         <br />
 
         <ButtonUi
-          text="Publish"
+          text={isSaving ? "Saving..." : "Publish"}
           color={ButtonColor.dark}
           onClick={createPost}
         />
