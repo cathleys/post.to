@@ -14,6 +14,7 @@ export function EditPost({ post }: any) {
   const [desc, setDesc] = useState(() => post?.desc);
   const [content, setContent] = useState(() => post?.content);
   const [photo, setPhoto] = useState("");
+  const [isSaving, setSaving] = useState(false);
   const CLOUD_NAME = "dr04ygceb";
   const UPLOAD_PRESET = "cathto-upload-image";
 
@@ -24,7 +25,7 @@ export function EditPost({ post }: any) {
       toast.error("All fields are required");
       return;
     }
-
+    setSaving(!isSaving);
     try {
       let imageUrl = null;
       if (photo) {
@@ -130,7 +131,11 @@ export function EditPost({ post }: any) {
         </P.InputandTextArea>
         <br />
 
-        <E.ButtonUi text="Update" color={ButtonColor.dark} onClick={editPost} />
+        <E.ButtonUi
+          text={isSaving ? "Saving..." : "Update"}
+          color={ButtonColor.dark}
+          onClick={editPost}
+        />
       </P.PostForm>
       <ToastContainer autoClose={5000} />
     </P.Container>

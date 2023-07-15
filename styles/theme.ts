@@ -22,7 +22,7 @@ export const Theme = styled.div`
 
     input,
     textarea {
-      background-color: #111;
+      background-color: #1a202c;
       border: 1px solid #ccc;
       color: white;
     }
