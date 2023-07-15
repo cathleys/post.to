@@ -9,6 +9,8 @@ import * as N from "./navigation.style";
 import { UserContext } from "@features/ui/user-context";
 import { DarkModeToggle } from "../dark-mode-toggle";
 import { ButtonColor, ButtonUi, CustomModal } from "@features/index";
+import { Search } from "../search/search";
+import { ThemeContext } from "@features/ui/theme-provider";
 
 const navLinks = [
   { text: "Home", href: Routes.home },
@@ -22,7 +24,8 @@ export function NavigationMenu() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const [logout, setLogout] = useState(false);
-
+  const [isOpensearch, setOpenSearch] = useState(false);
+  const { mode } = useContext(ThemeContext);
   useEffect(() => {
     fetch("https://post-to.vercel.app/api/auth/user-profile", {
       credentials: "include",
@@ -55,6 +58,7 @@ export function NavigationMenu() {
       console.log(error);
     }
   };
+
   return (
     <>
       <N.NavBar>
@@ -68,6 +72,10 @@ export function NavigationMenu() {
           </Link>
         </N.Logo>
         <N.DarkAndMenu>
+          <N.SearchButton mode={mode} onClick={() => setOpenSearch(true)}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/icons/search.svg" alt="search" />
+          </N.SearchButton>
           <DarkModeToggle />
           <N.MenuButton
             id="basic-button"
@@ -127,6 +135,8 @@ export function NavigationMenu() {
         onClose={() => setLogout(false)}
         confirm={logOut}
       />
+
+      <Search open={isOpensearch} onClose={() => setOpenSearch(false)} />
     </>
   );
 }

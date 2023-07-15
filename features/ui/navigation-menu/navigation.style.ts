@@ -39,6 +39,21 @@ export const DarkAndMenu = styled.div`
   display: flex;
   gap: 1rem;
 `;
+
+export const SearchButton = styled.button<{ mode: string }>`
+  outline: none;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 50%;
+  background: ${(props) =>
+    props.mode === "dark"
+      ? "linear-gradient(145deg, #1c222f, #171d28)"
+      : "linear-gradient(145deg, #e6e6e6, #ffffff)"};
+  box-shadow: ${(props) =>
+    props.mode === "dark"
+      ? "11px 11px 22px #0b0d12, -11px -11px 22px #293346"
+      : "20px 20px 60px #d9d9d9, -20px -20px 60px #ffffff"};
+`;
 export const MenuLinks = styled.div`
   display: flex;
   flex-direction: row;
