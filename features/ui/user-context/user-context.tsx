@@ -3,7 +3,6 @@ import React, { createContext, useState } from "react";
 type UserInfo = {
   username: string;
   id: string;
-  profilePic: string;
 };
 
 type UserContextType = {
@@ -24,7 +23,6 @@ export function UserContextProvider({ children }: UserContextProps) {
   const [userInfo, setUserInfo] = useState<UserInfo | null>({
     username: "",
     id: "",
-    profilePic: "",
   });
 
   return (

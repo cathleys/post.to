@@ -5,6 +5,7 @@ import { UserContext } from "../user-context";
 
 export type UserData = {
   data: {
+    _id: string;
     username: string;
     bio: string;
     createdAt: Date | undefined;

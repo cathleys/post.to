@@ -1,13 +1,13 @@
 import React, { useState, useContext, useEffect } from "react";
+import { UserData } from "@features/ui/sidebar-user-info/sidebar-user-info";
+import { ToastContainer, toast } from "react-toastify";
 import { ButtonColor } from "@features/ui/button/button";
 import { ButtonUi } from "features/index";
-import * as B from "@features/ui";
-import { ToastContainer, toast } from "react-toastify";
+import { CustomModal } from "@features/ui/custom-modal";
 import * as S from "./settings.style";
 import { useRouter } from "next/router";
 import { Routes } from "@config/routes";
-import { CustomModal } from "@features/ui/custom-modal";
-import { UserData } from "@features/ui/sidebar-user-info/sidebar-user-info";
+import * as B from "@features/ui";
 
 export function Settings() {
   const router = useRouter();
@@ -21,6 +21,7 @@ export function Settings() {
   const [open, setOpen] = useState(false);
   const CLOUD_NAME = "dr04ygceb";
   const UPLOAD_PRESET = "cathto-upload-image";
+
   useEffect(() => {
     fetch(`https://post-to.vercel.app/api/users/${userInfo?.id}`).then(
       (response) => {
