@@ -1,16 +1,17 @@
 import React, { useEffect, useState, useContext } from "react";
+import { UserData } from "@features/ui/sidebar-user-info/sidebar-user-info";
 import { useRouter } from "next/router";
 import { Routes } from "@config/routes";
 import fetch from "isomorphic-unfetch";
 import Link from "next/link";
-import { Menu, MenuItem } from "@mui/material";
-import { Anchor, NavigationLink } from "./navigation-link";
-import * as N from "./navigation.style";
 import { UserContext } from "@features/ui/user-context";
-import { DarkModeToggle } from "../dark-mode-toggle";
-import { ButtonColor, ButtonUi, CustomModal } from "@features/index";
-import { Search } from "../search/search";
 import { ThemeContext } from "@features/ui/theme-provider";
+import { DarkModeToggle } from "../dark-mode-toggle";
+import { Search } from "../search/search";
+import * as L from "./navigation-link";
+import * as N from "./navigation.style";
+import * as M from "@mui/material";
+import * as R from "@features/index";
 
 const navLinks = [
   { text: "Home", href: Routes.home },
@@ -21,11 +22,13 @@ export function NavigationMenu() {
   const router = useRouter();
 
   const { userInfo, setUserInfo } = useContext(UserContext);
+  const [userData, setUserData] = useState<UserData | null>(null);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const [logout, setLogout] = useState(false);
   const [isOpensearch, setOpenSearch] = useState(false);
   const { mode } = useContext(ThemeContext);
+
   useEffect(() => {
     fetch("https://post-to.vercel.app/api/auth/user-profile", {
       credentials: "include",
@@ -36,9 +39,18 @@ export function NavigationMenu() {
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  useEffect(() => {
+    fetch(`https://post-to.vercel.app/api/users/${userInfo?.id}`).then(
+      (res) => {
+        res.json().then((user) => {
+          setUserData(user);
+        });
+      }
+    );
+  }, [userInfo?.id]);
 
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget);
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(e.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
@@ -58,17 +70,18 @@ export function NavigationMenu() {
       console.log(error);
     }
   };
-
+  const { profilePic, _id } = userData?.data || {};
+  const hasUser = _id;
   return (
     <>
       <N.NavBar>
         <N.Logo>
           <Link href={Routes.home} passHref>
-            <Anchor>
+            <L.Anchor>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/postto.png" alt="post.to" style={{ width: "50px" }} />
               Post.to
-            </Anchor>
+            </L.Anchor>
           </Link>
         </N.Logo>
         <N.DarkAndMenu>
@@ -84,9 +97,13 @@ export function NavigationMenu() {
             aria-expanded={open ? "true" : undefined}
             onClick={handleClick}
           >
-            <N.MenuIcon src="/icons/menu-icon.svg" alt="menu" />
+            {hasUser ? (
+              <N.Avatar src={profilePic} alt="pic" />
+            ) : (
+              <N.MenuIcon src="/icons/menu-icon.svg" alt="menu" />
+            )}
           </N.MenuButton>
-          <Menu
+          <M.Menu
             id="basic-menu"
             anchorEl={anchorEl}
             open={open}
@@ -95,7 +112,7 @@ export function NavigationMenu() {
               "aria-labelledby": "basic-button",
             }}
           >
-            <MenuItem
+            <M.MenuItem
               style={{
                 flexDirection: "column",
                 fontFamily: "Inter",
@@ -103,16 +120,16 @@ export function NavigationMenu() {
             >
               {userInfo?.username && (
                 <>
-                  <span>Hi {userInfo?.username}!</span>
+                  <N.Name>Hi {userInfo?.username}!</N.Name>
                   {navLinks.map((link: any, index) => (
-                    <NavigationLink key={index} {...link} />
+                    <L.NavigationLink key={index} {...link} />
                   ))}
-                  <NavigationLink
+                  <L.NavigationLink
                     href={`/settings-page/${userInfo.id}`}
                     text="Settings"
                   />
-                  <ButtonUi
-                    color={ButtonColor.white}
+                  <R.ButtonUi
+                    color={R.ButtonColor.white}
                     text="Log out"
                     onClick={() => setLogout(true)}
                   />
@@ -120,15 +137,15 @@ export function NavigationMenu() {
               )}
               {!userInfo?.username && (
                 <>
-                  <NavigationLink href={Routes.signup} text="Sign Up" />
-                  <NavigationLink href={Routes.login} text="Login" />
+                  <L.NavigationLink href={Routes.signup} text="Sign Up" />
+                  <L.NavigationLink href={Routes.login} text="Login" />
                 </>
               )}
-            </MenuItem>
-          </Menu>
+            </M.MenuItem>
+          </M.Menu>
         </N.DarkAndMenu>
       </N.NavBar>
-      <CustomModal
+      <R.CustomModal
         open={logout}
         message="Are you sure you want to log out?"
         text="Log out"

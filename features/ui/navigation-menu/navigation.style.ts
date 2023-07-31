@@ -67,4 +67,13 @@ export const MenuButton = styled.button`
   outline: none;
   background: none;
 `;
+
+export const Name = styled.span`
+  font-size: 12px;
+`;
 export const MenuIcon = styled.img``;
+export const Avatar = styled.img`
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+`;
